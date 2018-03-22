@@ -1,0 +1,7 @@
+target
+.gradle/
+build/
+out/
+org.junit.rules*/
+.idea/
+src/test/resources/plugins

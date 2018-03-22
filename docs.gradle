@@ -1,0 +1,95 @@
+import org.codehaus.groovy.control.CompilerConfiguration
+
+def template = '''
+# Jenkins Startup Scripts
+
+A collection of groovy scripts that can be used to simplify the configuration of Jenkins.
+
+## Using the Scripts
+
+Though it is possible to run them without it, these scripts have been wrtten to work in conjunction with the jenkins-startup-scripts-runner project. Please see that project for details on how to confgure and invoke these scripts.
+
+## Adding Scripts
+
+To add another script, simply place the file inside the scripts directory and add the details to the "config/scripts.config" file. The following snippet, for example, would configure a script called "newscript.groovy" in the scripts directory, that would only be evaluated if the configuration file contains a non null value for config.tools.newtool.
+
+```
+newscript {
+    script = "scripts/newscript.groovy"
+    configPath = "config?.tools?.newtool"
+}
+```
+
+The scripts themselves are pretty easy to write, take a look at the existing scripts - you should find something that is similar to the problem you are trying to solve.
+
+## Testing
+
+There are plenty of examples of how to write tests in this codebase already. Most of the existing tests start up an instance of Jenkins and test the state after a certain script has been executed. Much of the hard work has been done already so try not to reinvent the wheel.
+
+Note. As an added bonus, when you add a test config file to the src/test/resources/scripts directory it will be automatically added to these docs when they are auto-generated. See below for instructions.
+
+## Configuration Samples
+
+${configExamples}
+
+Note. This file is generated using docs.gradle
+
+```
+gradle -b docs.gradle generate
+```
+
+Whatever you do, don't go editing the readme.md file directly :-)
+
+'''
+
+task build << {
+    generate(template, "${System.getProperty("user.dir")}/src/test/resources/scripts", "**/jenkins.config")
+}
+
+def generate(String markup, String directory, String include, String exclude=null){
+    def configFiles = new FileNameFinder().getFileNames(directory, include, exclude)
+    StringBuilder configExamples = new StringBuilder()
+    configFiles.each {
+        def bits = it.split("/")
+        def testName = bits[bits.length-2]
+
+        def testFile = getTestFile(testName)
+        println(testFile)
+        def plugins = extractPlugins(testFile.text)
+        def pluginsString = plugins.size() == 0 ? 'NA' : plugins.join(", ")
+
+        def name = testName.replace("Test", "")
+        configExamples.append("${name}\n\n```groovy\n${new File(it).text.trim()}\n```\n\n<sub>Tested Plugin Versions: ${pluginsString}</sub>\n\n")
+
+    }
+    def binding = [configExamples : configExamples.toString()]
+    def engine = new groovy.text.SimpleTemplateEngine()
+    def template = engine.createTemplate(markup).make(binding)
+
+    def readme = new File("${System.getProperty("user.dir")}/readme.md")
+    readme.createNewFile()
+    readme.text = template.toString()
+}
+
+def getTestFile(String name){
+    def test = new FileNameFinder().getFileNames("${System.getProperty("user.dir")}", "**/${name}.groovy")
+    if(test.size() == 0){
+        return
+    }
+    return new File(test[0])
+}
+
+def extractPlugins(String config){
+    def matcher = config =~ /(?s)@WithPlugin\(([^\)]*)\)(?)/
+    def results = []
+    while (matcher.find()) {
+        matcher.groupCount()
+        def match = matcher.group(1)
+        results.addAll(cleanAndParse(match))
+    }
+    return results
+}
+
+def cleanAndParse(String string){
+    string.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\"", "").replaceAll("\n", "").replaceAll(" ", "").split(",")
+}

@@ -119,13 +119,13 @@ Credentials
 
 ```groovy
 credentials {
-    nexus=['username':'nexus', 'password':'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)', 'description':'nexus credentials']
-    bluemix=['username':'bluemix', 'password':'ENC(V18Pblrx224=)', 'description':'bluemix credentials']
-    node=['username':'node', 'password':'ENC(V18Pblrx224=)', 'description':'node credentials', 'type': 'SSH', 'privateKeyFile':'.ssh/id_rsa']
-    gerrit=['description': 'gerrit credentials', 'key':'super/secret', 'usernameKey': "username", 'passwordKey': "password", 'type': 'HashicorpVault']
+    repository=['username':'repository', 'password':'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)', 'description':'repository credentials']
+    cloud=['username':'cloud', 'password':'ENC(FtBGXIAp6Ks=)', 'description':'cloud credentials']
+    ssh=['username':'ssh', 'password':'ENC(FtBGXIAp6Ks=)', 'description':'node credentials', 'type': 'SSH', 'privateKeyFile':'.ssh/id_rsa']
+    vault=['description': 'vault credentials', 'key':'super/secret', 'usernameKey': "username", 'passwordKey': "password", 'type': 'HashicorpVault']
     saucelabs=['description': 'SauceLabs credentials', 'username': 'slUser', 'apiKey': 'slApiKey', 'type': 'SauceLabs']
     gitlab=['description': 'Gitlab credentials', 'token': 'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)', 'type': 'GitLabApiToken']
-    urbancode=['description': 'UrbanCode auth token', 'token': 'ENC(l23cUXgYw78sQ/ngZ9/4Zg==)', 'type': 'StringCredential']
+    string=['description': 'auth token', 'token': 'ENC(RUa6u7bp0SpkbxktC6E8GQ==)', 'type': 'StringCredential']
 }
 ```
 
@@ -135,7 +135,7 @@ CustomTool
 
 ```groovy
 tools {
-    custom = [[name: "cf", url: "http://nexus.sandbox.extranet.group/nexus/content/sites/binaries/cf-cli/cf-cli_6.23.1_linux_x86-64.tgz", subdir: ""]]
+    custom = [[name: "cf", url: "http://someserver.com/binaries/cf-cli/cf-cli_6.23.1_linux_x86-64.tgz", subdir: ""]]
 }
 ```
 
@@ -902,9 +902,9 @@ clouds {
                     nativeLibraryPath = "/usr/lib/libmesos.so",
                     master = "10.113.140.187:5050",
                     description = "",
-                    frameworkName = "sbx-jenkins",
+                    frameworkName = "jenkins",
                     role = "*",
-                    slavesUser = "jenkins2",
+                    slavesUser = "jenkins",
                     credentialsId = "",
                     principal = "jenkins",
                     secret = "",
@@ -915,7 +915,7 @@ clouds {
                     cloudID = "",
                     slaves = [
                             [
-                                    labelString           : "sbx",
+                                    labelString           : "label",
                                     slaveCpus             : "0.2",
                                     slaveMem              : "1024",
                                     minExecutors          : "3",
@@ -986,9 +986,9 @@ clouds {
                     nativeLibraryPath = "/usr/lib/libmesos.so",
                     master = "10.113.140.187:5050",
                     description = "",
-                    frameworkName = "sbx-jenkins",
+                    frameworkName = "jenkins",
                     role = "*",
-                    slavesUser = "jenkins2",
+                    slavesUser = "jenkins",
                     credentialsId = "",
                     principal = "jenkins",
                     secret = "",
@@ -999,7 +999,7 @@ clouds {
                     cloudID = "",
                     slaves = [
                             [
-                                    labelString           : "sbx",
+                                    labelString           : "label",
                                     slaveCpus             : "0.2",
                                     slaveMem              : "1024",
                                     minExecutors          : "3",
@@ -1077,7 +1077,7 @@ Passwords
 ```groovy
 env {
     passwords {
-        nexus='ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)'
+        repository='ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)'
     }
 }
 ```

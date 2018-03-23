@@ -167,11 +167,14 @@ dependencies {
 
 
 repositories {
+    maven {
+        url 'http://bits.netbeans.org/maven2'
+    }
+    maven {
+        url 'http://repo.jenkins-ci.org/releases/'
+    }
     mavenLocal()
     mavenCentral()
-    maven {
-        url 'https://repo.jenkins-ci.org/releases/'
-    }
     ivy {
         artifactPattern 'http://updates.jenkins-ci.org/download/plugins/[module]/[revision]/[module].[ext]'
     }

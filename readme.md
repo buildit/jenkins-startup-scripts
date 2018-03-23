@@ -454,7 +454,7 @@ Jira
 ```groovy
 jira {
     sites {
-        lbg {
+        foo {
             url = "https://jira.foo.com/"
             alternativeUrl = "https://jira.foo.com/"
             userName = "admin"
@@ -467,7 +467,7 @@ jira {
             groupVisibility = null
             roleVisibility = null
         }
-        foo {
+        bar {
             url = "http://jira.bar.com"
             alternativeUrl = "http://jira.bar.com"
             userName = "user"

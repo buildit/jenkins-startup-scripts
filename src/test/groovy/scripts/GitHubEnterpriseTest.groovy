@@ -38,7 +38,7 @@ class GitHubEnterpriseTest {
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureGitHubEnterprise() {
         def nodejsConfig = new File(jenkinsRule.jenkins.root.getAbsoluteFile(), "org.jenkinsci.plugins.github_branch_source.GitHubConfiguration.xml").text
-        assertThat(nodejsConfig, containsString("<apiUri>https://github.com/</apiUri>"))
+        assertThat(nodejsConfig, containsString("<apiUri>https://github.com</apiUri>"))
         assertThat(nodejsConfig, containsString("<name>GitHub</name>"))
     }
 }

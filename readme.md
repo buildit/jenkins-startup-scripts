@@ -343,8 +343,8 @@ GitHubEnterprise
 
 ```groovy
 githubEnterprise {
-  apiUrl = "https://github.lbg.eu-gb.bluemix.net/api/v3"
-  name = "GitHub Enterprise"
+  apiUrl = "https://github.com/"
+  name = "GitHub"
 }
 ```
 

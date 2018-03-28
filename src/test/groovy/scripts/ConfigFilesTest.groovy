@@ -2,30 +2,19 @@ package scripts
 
 import jenkins.model.Jenkins
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
 import static org.assertj.core.api.Assertions.assertThat
 import static org.assertj.core.api.Assertions.tuple
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
-import static utilities.ResourcePath.resourcePath
 
-class ConfigFilesTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/configfiles.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class ConfigFilesTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        addScriptToLocalDataZip(ConfigFilesTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+        setUp(ConfigFilesTest.class, ["scripts/configfiles.groovy"])
     }
 
     @Test

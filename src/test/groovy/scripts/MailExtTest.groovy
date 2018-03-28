@@ -2,9 +2,7 @@ package scripts
 
 import jenkins.model.Jenkins
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
@@ -12,21 +10,12 @@ import utilities.ZipTestFiles
 import static org.hamcrest.CoreMatchers.equalTo
 import static org.junit.Assert.assertNotNull
 import static org.junit.Assert.assertThat
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
-import static utilities.ResourcePath.resourcePath
 
-class MailExtTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/mailext.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class MailExtTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        addScriptToLocalDataZip(MailExtTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+        setUp(MailExtTest.class, ["scripts/mailext.groovy"])
     }
 
     @Test

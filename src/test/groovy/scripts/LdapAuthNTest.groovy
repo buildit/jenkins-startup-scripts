@@ -1,29 +1,18 @@
 package scripts
 
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import utilities.ZipTestFiles
 
 import static org.hamcrest.CoreMatchers.equalTo
 import static org.junit.Assert.assertThat
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
-import static utilities.ResourcePath.resourcePath
 
-class LdapAuthNTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/ldapauthn.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class LdapAuthNTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        addScriptToLocalDataZip(LdapAuthNTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+        setUp(LdapAuthNTest.class, ["scripts/ldapauthn.groovy"])
     }
 
     @Test

@@ -12,17 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat
 import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.ResourcePath.resourcePath
 
-class SplunkTest {
-    private static final List SCRIPTS = ["main.groovy", "scripts/splunk.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class SplunkTest extends StartupTest {
 
     @BeforeClass
-    static void setUp() {
-        addScriptToLocalDataZip(SplunkTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+    public static void setUp() {
+        setUp(SplunkTest.class, ["scripts/splunk.groovy"])
     }
 
     @Test

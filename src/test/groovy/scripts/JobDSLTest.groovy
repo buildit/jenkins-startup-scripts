@@ -3,9 +3,7 @@ package scripts
 import hudson.model.FreeStyleProject
 import jenkins.model.GlobalConfiguration
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
@@ -15,21 +13,12 @@ import static org.hamcrest.core.IsNot.not
 import static org.hamcrest.core.IsNull.notNullValue
 import static org.hamcrest.core.StringContains.containsString
 import static org.junit.Assert.assertThat
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
-import static utilities.ResourcePath.resourcePath
 
-class JobDSLTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/jobdsl.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class JobDSLTest extends StartupTest {
 
     @BeforeClass
-    static void setUp() {
-        addScriptToLocalDataZip(JobDSLTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+    public static void setUp() {
+        setUp(JobDSLTest.class, ["scripts/jobdsl.groovy"])
     }
 
     @Test(timeout = 30000L)

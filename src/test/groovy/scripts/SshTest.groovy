@@ -14,18 +14,11 @@ import static org.junit.Assert.assertThat
 import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.ResourcePath.resourcePath
 
-class SshTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/ssh.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts";
-    private static final String SCRIPT_TARGET = "init.groovy.d";
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule();
+class SshTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        addScriptToLocalDataZip(SshTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+        setUp(SshTest.class, ["scripts/ssh.groovy"])
     }
 
     @Test

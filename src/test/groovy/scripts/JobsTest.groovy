@@ -2,31 +2,19 @@ package scripts
 
 import hudson.model.FreeStyleProject
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import utilities.ZipTestFiles
 
 import static org.hamcrest.collection.IsEmptyCollection.empty
 import static org.hamcrest.core.IsNull.notNullValue
 import static org.junit.Assert.assertThat
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
-import static utilities.ResourcePath.resourcePath
 
-class JobsTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/jobs.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class JobsTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        addScriptToLocalDataZip(JobsTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
-
+        setUp(JobsTest.class, ["scripts/jobs.groovy"])
     }
 
     @Test

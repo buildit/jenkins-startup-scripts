@@ -17,26 +17,17 @@ import static org.junit.Assert.assertThat
 import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.ResourcePath.resourcePath
 
-class UpdateBuildNumbersTest {
+class UpdateBuildNumbersTest  extends StartupTest {
 
-    private static
-    final List SCRIPTS = ["main.groovy", "scripts/jobs.groovy", "scripts/env.groovy", "scripts/updatebuildnumbers.groovy", "config/scripts.config"]
-
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
     private static final LAST_BUILD_NUMBER = 10
     public static final int PORT = 51234
-
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().port(PORT))
 
     @BeforeClass
-    static void setUp() {
-        addScriptToLocalDataZip(UpdateBuildNumbersTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+    public static void setUp() {
+        setUp(UpdateBuildNumbersTest.class, ["scripts/jobs.groovy", "scripts/env.groovy", "scripts/updatebuildnumbers.groovy"])
     }
 
     @Test(timeout = 90000L)

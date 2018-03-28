@@ -14,18 +14,11 @@ import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.ResourcePath.resourcePath
 
 
-class SonarQubeTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/sonarqube.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class SonarQubeTest extends StartupTest {
 
     @BeforeClass
-    static void setUp() {
-        addScriptToLocalDataZip(SonarQubeTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+    public static void setUp() {
+        setUp(SonarQubeTest.class, ["scripts/sonarqube.groovy"])
     }
 
     @Test

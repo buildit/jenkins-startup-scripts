@@ -15,7 +15,7 @@ class MailExtTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        setUp(LogstashTest.class, ["scripts/mailext.groovy"])
+        setUp(MailExtTest.class, ["scripts/mailext.groovy"])
     }
 
     @Test

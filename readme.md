@@ -1,6 +1,9 @@
 
 # Jenkins Startup Scripts
 
+[![Build Status](https://travis-ci.org/buildit/jenkins-startup-scripts.svg?branch=master)](https://travis-ci.org/buildit/jenkins-startup-scripts)
+[ ![Download](https://api.bintray.com/packages/buildit/maven/jenkins-startup-scripts/images/download.svg) ](https://bintray.com/buildit/maven/jenkins-startup-scripts/_latestVersion)
+
 A collection of groovy scripts that can be used to simplify the configuration of Jenkins.
 
 ## Using the Scripts

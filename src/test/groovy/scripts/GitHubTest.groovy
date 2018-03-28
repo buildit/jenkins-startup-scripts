@@ -1,29 +1,19 @@
 package scripts
 
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
 import static org.hamcrest.CoreMatchers.containsString
 import static org.junit.Assert.assertThat
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
-import static utilities.ResourcePath.resourcePath
 
-class GitHubEnterpriseTest {
-    private static final List SCRIPTS = ["main.groovy", "scripts/githubEnterprise.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class GitHubTest extends StartupTest {
 
     @BeforeClass
-    static void setUp() {
-        addScriptToLocalDataZip(GitHubEnterpriseTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+    public static void setUp() {
+        setUp(GitHubTest.class, ["scripts/github.groovy"])
     }
 
     @Test

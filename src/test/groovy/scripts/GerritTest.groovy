@@ -14,18 +14,11 @@ import static org.junit.Assert.assertTrue
 import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.ResourcePath.resourcePath
 
-class GerritTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/gerrit.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class GerritTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        addScriptToLocalDataZip(GerritTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+        setUp(GerritTest.class, ["scripts/gerrit.groovy"])
     }
 
     @Test

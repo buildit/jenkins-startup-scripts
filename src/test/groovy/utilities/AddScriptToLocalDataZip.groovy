@@ -9,19 +9,15 @@ import static utilities.ResourcePath.resourcePath
 
 class AddScriptToLocalDataZip {
 
-    public static void addScriptToLocalDataZip(Class testClass, String scriptName, String scriptPath, String targetPath, Map scriptsToPath=[:]) {
-        addScriptToLocalDataZip(testClass, scriptName, [scriptPath], targetPath)
-    }
-
-    public static void addScriptToLocalDataZip(Class testClass, List scriptNames, String scriptPath, String targetPath, Map scriptsToPath=[:]){
+    public static void addScriptToLocalDataZip(Class testClass, List scriptNames, String scriptPath, String targetPath){
         def allTestFiles = [:]
         scriptNames.each {
-            def scriptSource = new FileSource("${targetPath}/${it}", new File("${scriptPath}/${it}"))
+            def file = new File("${scriptPath}/${it}")
+            if(!file.exists()){
+                file = new File(resourcePath("${it}"))
+            }
+            def scriptSource = new FileSource("${targetPath}/${it}", file)
             allTestFiles.put("${scriptPath}/${it}", scriptSource)
-        }
-        scriptsToPath.each { k, v ->
-            def scriptSource = new FileSource("${targetPath}/${k}", new File("${v}"))
-            allTestFiles.put("${targetPath}/${k}", scriptSource)
         }
         def directoryPath = resourcePath(testClass.getCanonicalName().replace('.', '/')) as String
         if(directoryPath == null){

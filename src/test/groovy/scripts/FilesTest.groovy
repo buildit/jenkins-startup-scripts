@@ -1,9 +1,7 @@
 package scripts
 
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import utilities.ZipTestFiles
 
@@ -13,26 +11,16 @@ import java.nio.file.attribute.PosixFilePermissions
 import static org.hamcrest.CoreMatchers.equalTo
 import static org.hamcrest.CoreMatchers.startsWith
 import static org.junit.Assert.assertThat
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.HttpJsonServer.startServer
 import static utilities.ResourcePath.resourcePath
 
-class FilesTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/files.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class FilesTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        addScriptToLocalDataZip(FilesTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+        setUp(FilesTest.class, ["scripts/files.groovy"])
         def defaultVaultPath = "${resourcePath("root", "FilesTest/default") as String}".replaceAll("root", "")
-        // start server from root/default of resources
         def specificVaultPath = "${resourcePath("root", "FilesTest/specific") as String}".replaceAll("root", "")
-        // start server from root/specific of resources
         startServer("${defaultVaultPath}", 51234)
         startServer("${specificVaultPath}", 51235)
     }

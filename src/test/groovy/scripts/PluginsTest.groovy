@@ -9,9 +9,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler
 import org.eclipse.jetty.server.handler.HandlerList
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Rule
 import org.junit.Test
-import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
 import utilities.ZipTestFiles
 
@@ -24,25 +22,17 @@ import java.nio.file.Paths
 import static org.hamcrest.CoreMatchers.is
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertThat
-import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.ResourcePath.resourcePath
 
-class PluginsTest {
+class PluginsTest extends StartupTest {
 
-    private static final List SCRIPTS = ["main.groovy", "scripts/plugins.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
     private static final String RESTART_LOG = "restart.log"
     private static final String PLUGIN_LOG = "plugins/plugins.log"
-
     private static final Server SERVER = createPluginServer()
 
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
-
     @BeforeClass
-    static void setUp() {
-        addScriptToLocalDataZip(PluginsTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+    public static void setUp() {
+        setUp(PluginsTest.class, ["scripts/plugins.groovy"])
         Jenkins.metaClass.static.restart = {
             def jenkinsHome = Jenkins.getInstance().getProperties().get("rootPath").toString()
             File jenkinsConfig = new File("${jenkinsHome}/${RESTART_LOG}")

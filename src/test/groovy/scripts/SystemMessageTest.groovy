@@ -11,18 +11,11 @@ import static org.junit.Assert.assertEquals
 import static utilities.AddScriptToLocalDataZip.addScriptToLocalDataZip
 import static utilities.ResourcePath.resourcePath
 
-class SystemMessageTest {
-
-    private static final List SCRIPTS = ["main.groovy", "scripts/systemMessage.groovy", "config/scripts.config"]
-    private static final String SCRIPT_PATH = "scripts"
-    private static final String SCRIPT_TARGET = "init.groovy.d"
-
-    @Rule
-    public JenkinsRule jenkinsRule = new JenkinsRule()
+class SystemMessageTest  extends StartupTest {
 
     @BeforeClass
-    static void setUp() {
-        addScriptToLocalDataZip(SystemMessageTest.class, SCRIPTS, SCRIPT_PATH, SCRIPT_TARGET, ["loader.groovy": resourcePath("loader/local.groovy", "")])
+    public static void setUp() {
+        setUp(SystemMessageTest.class, ["scripts/systemMessage.groovy"])
     }
 
     @Test

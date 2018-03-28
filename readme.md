@@ -339,10 +339,10 @@ tools {
 
 <sub>Tested Plugin Versions: gerrit-trigger-2.17.2.hpi</sub>
 
-GitHubEnterprise
+GitHub
 
 ```groovy
-githubEnterprise {
+github {
   apiUrl = "https://github.com/"
   name = "GitHub"
 }

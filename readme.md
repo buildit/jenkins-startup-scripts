@@ -1261,9 +1261,9 @@ tools {
     ssh =
             [name             : 'dev-p1-app-01',
              hostname         : 'dev-p1-app-01',
-             username         : 'honey.bajaj',
+             username         : 'user.name',
              encryptedPassword: 'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)',
-             remoteRootDir    : '/home/honey.bajaj',
+             remoteRootDir    : '/home/user.name',
              port             : 22,
              timeout          : 300000,
              overrideKey      : false,

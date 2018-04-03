@@ -29,8 +29,8 @@ class SshTest extends StartupTest {
         def descriptor = jenkinsRule.instance.getDescriptor("jenkins.plugins.publish_over_ssh.BapSshPublisherPlugin");
         def configuration = descriptor.getHostConfigurations()[0];
         assertThat(configuration.getName() as String, equalTo("dev-p1-app-01"));
-        assertThat(configuration.getUsername() as String, equalTo("honey.bajaj"));
-        assertThat(configuration.getRemoteRootDir() as String, equalTo("/home/honey.bajaj"));
+        assertThat(configuration.getUsername() as String, equalTo("user.name"));
+        assertThat(configuration.getRemoteRootDir() as String, equalTo("/home/user.name"));
         assertThat(configuration.getPort() as int, equalTo(22));
         assertThat(configuration.getTimeout() as int, equalTo(300000));
         assertThat(configuration.isOverrideKey() as boolean, equalTo(false));

@@ -1322,22 +1322,6 @@ systemProperties = [
 
 <sub>Tested Plugin Versions: NA</sub>
 
-UpdateBuildNumbers
-
-```groovy
-updatebuildnumbers {
-    projectName = 'statements'
-}
-
-env {
-    variables{
-        ETCD_HOST ='http://localhost:51234'
-    }
-}
-```
-
-<sub>Tested Plugin Versions: NA</sub>
-
 
 
 Note. This file is generated using docs.gradle

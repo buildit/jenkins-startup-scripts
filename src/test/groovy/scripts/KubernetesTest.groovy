@@ -22,7 +22,7 @@ class KubernetesTest extends StartupTest {
     @WithPlugin(["kubernetes-1.5.2.hpi", "workflow-step-api-2.14.hpi", "credentials-2.1.16.hpi", "durable-task-1.15.hpi", "variant-1.1.hpi", "structs-1.10.hpi",
             "kubernetes-credentials-0.3.0.hpi", "plain-credentials-1.4.hpi"])
     void shouldSetUpHostDetailsFromConfig() {
-        sleep(1000000)
+
         def clouds = jenkinsRule.instance.clouds
         def cloud = clouds[0]
         assertThat(cloud.name as String, equalTo('My Cloud'))

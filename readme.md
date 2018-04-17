@@ -633,7 +633,7 @@ clouds {
  */
 ```
 
-<sub>Tested Plugin Versions: kubernetes-1.1.4.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.15.hpi, variant-1.1.hpi, structs-1.10.hpi</sub>
+<sub>Tested Plugin Versions: kubernetes-1.5.2.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.15.hpi, variant-1.1.hpi, structs-1.10.hpi, kubernetes-credentials-0.3.0.hpi, plain-credentials-1.4.hpi</sub>
 
 LdapAuthN
 
@@ -1042,7 +1042,7 @@ clouds {
 }
 ```
 
-<sub>Tested Plugin Versions: mesos-0.14.1.hpi, credentials-2.1.16.hpi, metrics-3.1.2.10.hpi, jackson2-api-2.8.10.1.hpi, structs-1.10.hpi, kubernetes-1.1.4.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.15.hpi, variant-1.1.hpi</sub>
+<sub>Tested Plugin Versions: mesos-0.14.1.hpi, credentials-2.1.16.hpi, metrics-3.1.2.10.hpi, jackson2-api-2.8.10.1.hpi, structs-1.10.hpi, kubernetes-1.5.2.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.15.hpi, variant-1.1.hpi, kubernetes-credentials-0.3.0.hpi, plain-credentials-1.4.hpi</sub>
 
 NodeJs
 

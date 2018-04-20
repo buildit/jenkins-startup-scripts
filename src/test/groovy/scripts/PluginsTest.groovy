@@ -56,14 +56,14 @@ class PluginsTest extends StartupTest {
         def pluginsDir = "${jenkinsHome}/plugins/"
         def pluginsCache = "${jenkinsHome}/plugins-cache/"
 
-        String mavenPlugin = "maven-plugin-2.7.1.hpi"
+        String mavenPlugin = "maven-plugin-2.17.hpi"
         String activeDirectory = "active-directory-2.0.hpi"
         String aceEditor = "ace-editor-1.0.1.hpi"
 
         assertThat(new File("${jenkinsHome}/${RESTART_LOG}").exists(), is(true))
         assertThat(new File("${jenkinsHome}/${PLUGIN_LOG}").exists(), is(true))
 
-        assertEquals("86f5739f6ea2dc30910a89b0d3f7047d",
+        assertEquals("19be33fe0d87eed23285001b3c39aad2",
                 new String(Files.readAllBytes(Paths.get("${jenkinsHome}/${PLUGIN_LOG}"))))
 
         assertThat(new File("${pluginsDir}/${mavenPlugin}").exists(), is(true))

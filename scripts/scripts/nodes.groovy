@@ -41,7 +41,7 @@ private Node.Mode mode(mode) {
 private ComputerLauncher launcher(launchType, host, port, jnlpTunnel, jnlpVmArgs, credentialsId, javaPath) {
     switch (launchType) {
         case 'SSH':
-            return new SSHLauncher(host, port ?: 22, credentialsId, '', javaPath, '', '', null, 0, 0)
+            return new SSHLauncher(host, port ?: 22, credentialsId, '', javaPath, '', '')
         case 'JNLP':
             return new JNLPLauncher(jnlpTunnel, jnlpVmArgs)
         default:

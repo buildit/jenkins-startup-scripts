@@ -110,7 +110,6 @@ version = "${project.version}"
 
 test {
     forkEvery 1
-    maxParallelForks 1
 }
 
 task cleanPlugins {

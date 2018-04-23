@@ -18,7 +18,7 @@ class PasswordsTest extends StartupTest {
 
     @Test
     @LocalData
-    @WithPlugin(["envinject-1.91.3.hpi", "maven-plugin-2.7.1.hpi", "mailer-1.20.hpi", "javadoc-1.1.hpi", "junit-1.23.hpi",
+    @WithPlugin(["envinject-1.91.3.hpi", "maven-plugin-2.17.hpi", "mailer-1.20.hpi", "javadoc-1.1.hpi", "junit-1.23.hpi",
             "display-url-api-2.2.0.hpi", "workflow-step-api-2.14.hpi", "script-security-1.40.hpi", "structs-1.10.hpi",
             "workflow-api-2.26.hpi", "scm-api-2.2.6.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])

@@ -6,6 +6,7 @@ import hudson.slaves.JNLPLauncher
 import org.junit.BeforeClass
 import org.junit.Test
 import org.jvnet.hudson.test.recipes.LocalData
+import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
 import static org.hamcrest.CoreMatchers.equalTo
@@ -22,6 +23,7 @@ class NodesTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
+    @WithPlugin(["ssh-slaves-1.1.hpi", "credentials-2.1.16.hpi", "structs-1.10.hpi", "ssh-credentials-1.13.hpi"])
     void shouldConfigureNodesFromConfig() {
         def node01 = jenkinsRule.jenkins.getNode("node 01") as Slave
         assertThat(node01.getNodeDescription(), equalTo("First node"))

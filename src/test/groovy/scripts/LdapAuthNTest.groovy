@@ -3,6 +3,7 @@ package scripts
 import org.junit.BeforeClass
 import org.junit.Test
 import org.jvnet.hudson.test.recipes.LocalData
+import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
 import static org.hamcrest.CoreMatchers.equalTo
@@ -18,6 +19,7 @@ class LdapAuthNTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
+    @WithPlugin(["ldap-1.15.hpi", "mailer-1.20.hpi", "display-url-api-2.2.0.hpi", "matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
     void shouldSetPermissions() {
         def securityRealm = jenkinsRule.instance.getSecurityRealm()
         println(securityRealm)

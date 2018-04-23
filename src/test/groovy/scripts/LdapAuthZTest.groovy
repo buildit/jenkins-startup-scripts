@@ -4,6 +4,7 @@ import hudson.security.Permission
 import org.junit.BeforeClass
 import org.junit.Test
 import org.jvnet.hudson.test.recipes.LocalData
+import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
 import static org.hamcrest.CoreMatchers.equalTo
@@ -20,6 +21,7 @@ class LdapAuthZTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
+    @WithPlugin(["ldap-1.15.hpi", "mailer-1.20.hpi", "display-url-api-2.2.0.hpi", "icon-shim-2.0.3.hpi", "matrix-auth-1.4.hpi"])
     void shouldSetPermissions() {
         def authorizationStrategy = jenkinsRule.instance.getAuthorizationStrategy()
         assertThat(authorizationStrategy.getGroups().size(), equalTo(5))

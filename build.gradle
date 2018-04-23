@@ -28,6 +28,7 @@ dependencies {
                     ":active-directory:2.0@hpi",
                     ":anchore-container-scanner:1.0.12@hpi",
                     ":apache-httpcomponents-client-4-api:4.5.3-2.1@hpi",
+                    ":antisamy-markup-formatter:1.5@hpi",
                     ":cloudbees-folder:6.1.0@hpi",
                     ":config-file-provider:2.15.7@hpi",
                     ":confluence-publisher:1.8@hpi",
@@ -35,7 +36,7 @@ dependencies {
                     ":credentials-binding:1.10@hpi",
                     ":custom-tools-plugin:0.4.4@hpi",
                     ":display-url-api:2.2.0@hpi",
-                    ":durable-task:1.15@hpi",
+                    ":durable-task:1.16@hpi",
                     ":email-ext:2.58@hpi",
                     ":envinject:1.91.3@hpi",
                     ":extended-choice-parameter:0.28@hpi",
@@ -62,12 +63,13 @@ dependencies {
                     ":junit:1.23@hpi",
                     ":kubernetes:1.5.2@hpi",
                     ":kubernetes-credentials:0.3.0@hpi",
+                    ":ldap:1.15@hpi",
                     ":logstash:1.3.0@hpi",
                     ":mailer:1.20@hpi",
                     ":mask-passwords:2.10.1@hpi",
                     ":matrix-auth:1.4@hpi",
                     ":matrix-project:1.12@hpi",
-                    ":maven-plugin:2.7.1@hpi",
+                    ":maven-plugin:2.17@hpi",
                     ":nodejs:0.2.1@hpi",
                     ":mesos:0.14.1@hpi",
                     ":metrics:3.1.2.10@hpi",
@@ -108,7 +110,6 @@ version = "${project.version}"
 
 test {
     forkEvery 1
-    //maxParallelForks 4
 }
 
 task cleanPlugins {
@@ -152,11 +153,10 @@ dependencies {
     runtime 'org.apache.ivy:ivy:2.4.0'
     runtime 'com.bettercloud:vault-java-driver:3.0.0'
 
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'org.codehaus.groovy:groovy-all:2.4.11'
 
-    testCompile 'org.jenkins-ci.main:jenkins-test-harness:2.9'
-    testCompile "org.jenkins-ci.main:jenkins-war:2.9"
-    testCompile "org.jenkins-ci.main:jenkins-war:2.9:war-for-test@jar"
+    testCompile 'org.jenkins-ci.main:jenkins-test-harness:2.38'
+    testCompile "org.jenkins-ci.main:jenkins-war:2.99"
 
     testCompile "org.zeroturnaround:zt-zip:1.9"
     testCompile 'org.eclipse.jetty:jetty-server:9.2.3.v20140905'
@@ -173,6 +173,9 @@ repositories {
     }
     maven {
         url 'http://repo.jenkins-ci.org/releases/'
+    }
+    maven {
+        url 'https://repo.jenkins-ci.org/public/'
     }
     mavenLocal()
     mavenCentral()

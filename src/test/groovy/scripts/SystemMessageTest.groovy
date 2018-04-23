@@ -5,6 +5,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.jvnet.hudson.test.JenkinsRule
 import org.jvnet.hudson.test.recipes.LocalData
+import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
 import static org.junit.Assert.assertEquals
@@ -21,6 +22,7 @@ class SystemMessageTest  extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
+    @WithPlugin(["antisamy-markup-formatter-1.5.hpi"])
     void shouldConfigureSystemMessageFromConfig() {
         def descriptor = jenkinsRule.instance.getSystemMessage();
         assertEquals("<b>Testing System Message</b>", descriptor)

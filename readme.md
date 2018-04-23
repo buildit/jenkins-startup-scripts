@@ -132,7 +132,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: hashicorp-vault-plugin-2.1.0.hpi, hashicorp-vault-credentials-plugin-0.0.9.hpi, credentials-binding-1.10.hpi, credentials-2.1.16.hpi, workflow-api-2.26.hpi, workflow-step-api-2.14.hpi, structs-1.10.hpi, plain-credentials-1.4.hpi, ssh-credentials-1.13.hpi, sauce-ondemand-1.164.hpi, maven-plugin-2.7.1.hpi, matrix-project-1.12.hpi, workflow-basic-steps-2.5.hpi, run-condition-1.0.hpi, workflow-cps-2.23.hpi, junit-1.23.hpi, workflow-job-2.16.hpi, script-security-1.40.hpi, javadoc-1.1.hpi, token-macro-2.3.hpi, workflow-scm-step-2.6.hpi, workflow-support-2.16.hpi, ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, scm-api-2.2.6.hpi, workflow-cps-2.23.hpi, gitlab-plugin-1.4.8.hpi, git-3.7.0.hpi, git-client-2.7.0.hpi, cloudbees-folder-6.1.0.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
+<sub>Tested Plugin Versions: hashicorp-vault-plugin-2.1.0.hpi, hashicorp-vault-credentials-plugin-0.0.9.hpi, credentials-binding-1.10.hpi, credentials-2.1.16.hpi, workflow-api-2.26.hpi, workflow-step-api-2.14.hpi, structs-1.10.hpi, plain-credentials-1.4.hpi, ssh-credentials-1.13.hpi, sauce-ondemand-1.164.hpi, maven-plugin-2.17.hpi, matrix-project-1.12.hpi, workflow-basic-steps-2.5.hpi, run-condition-1.0.hpi, workflow-cps-2.23.hpi, junit-1.23.hpi, workflow-job-2.16.hpi, script-security-1.40.hpi, javadoc-1.1.hpi, token-macro-2.3.hpi, workflow-scm-step-2.6.hpi, workflow-support-2.16.hpi, ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, scm-api-2.2.6.hpi, workflow-cps-2.23.hpi, gitlab-plugin-1.4.8.hpi, git-3.7.0.hpi, git-client-2.7.0.hpi, cloudbees-folder-6.1.0.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
 
 CustomTool
 
@@ -633,7 +633,7 @@ clouds {
  */
 ```
 
-<sub>Tested Plugin Versions: kubernetes-1.5.2.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.15.hpi, variant-1.1.hpi, structs-1.10.hpi, kubernetes-credentials-0.3.0.hpi, plain-credentials-1.4.hpi</sub>
+<sub>Tested Plugin Versions: kubernetes-1.5.2.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.16.hpi, variant-1.1.hpi, structs-1.10.hpi, kubernetes-credentials-0.3.0.hpi, plain-credentials-1.4.hpi</sub>
 
 LdapAuthN
 
@@ -657,7 +657,7 @@ auth {
 }
 ```
 
-<sub>Tested Plugin Versions: NA</sub>
+<sub>Tested Plugin Versions: ldap-1.15.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi, matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
 
 LdapAuthZ
 
@@ -791,7 +791,7 @@ auth {
  **/
 ```
 
-<sub>Tested Plugin Versions: NA</sub>
+<sub>Tested Plugin Versions: ldap-1.15.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi, icon-shim-2.0.3.hpi, matrix-auth-1.4.hpi</sub>
 
 Libraries
 
@@ -867,7 +867,7 @@ mail {
 }
 ```
 
-<sub>Tested Plugin Versions: NA</sub>
+<sub>Tested Plugin Versions: mailer-1.20.hpi, display-url-api-2.2.0.hpi</sub>
 
 Master
 
@@ -1042,7 +1042,7 @@ clouds {
 }
 ```
 
-<sub>Tested Plugin Versions: mesos-0.14.1.hpi, credentials-2.1.16.hpi, metrics-3.1.2.10.hpi, jackson2-api-2.8.10.1.hpi, structs-1.10.hpi, kubernetes-1.5.2.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.15.hpi, variant-1.1.hpi, kubernetes-credentials-0.3.0.hpi, plain-credentials-1.4.hpi</sub>
+<sub>Tested Plugin Versions: mesos-0.14.1.hpi, credentials-2.1.16.hpi, metrics-3.1.2.10.hpi, jackson2-api-2.8.10.1.hpi, structs-1.10.hpi, kubernetes-1.5.2.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, durable-task-1.16.hpi, variant-1.1.hpi, kubernetes-credentials-0.3.0.hpi, plain-credentials-1.4.hpi</sub>
 
 NodeJs
 
@@ -1073,7 +1073,7 @@ nodes {
 }
 ```
 
-<sub>Tested Plugin Versions: NA</sub>
+<sub>Tested Plugin Versions: ssh-slaves-1.1.hpi, credentials-2.1.16.hpi, structs-1.10.hpi, ssh-credentials-1.13.hpi</sub>
 
 Passwords
 
@@ -1085,7 +1085,7 @@ env {
 }
 ```
 
-<sub>Tested Plugin Versions: envinject-1.91.3.hpi, maven-plugin-2.7.1.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, script-security-1.40.hpi, structs-1.10.hpi, workflow-api-2.26.hpi, scm-api-2.2.6.hpi</sub>
+<sub>Tested Plugin Versions: envinject-1.91.3.hpi, maven-plugin-2.17.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, script-security-1.40.hpi, structs-1.10.hpi, workflow-api-2.26.hpi, scm-api-2.2.6.hpi</sub>
 
 Plugins
 
@@ -1094,7 +1094,7 @@ plugins=[
     // default artifactPlugin = "http://updates.jenkins-ci.org/download/plugins/[module]/[revision]/[module].[ext]"
     first: [
             artifactPattern: 'http://localhost:4567/[module]-[revision].[ext]',
-            pluginArtifacts: ['ace-editor:1.0.1', 'maven-plugin:2.7.1']
+            pluginArtifacts: ['ace-editor:1.0.1', 'maven-plugin:2.17']
     ],
     second: [
             artifactPattern: 'http://localhost:4567/[module]-[revision].[ext]',
@@ -1209,7 +1209,7 @@ tools {
 }
 ```
 
-<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-2.7.1.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, script-security-1.40.hpi, structs-1.10.hpi</sub>
+<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-2.17.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, script-security-1.40.hpi, structs-1.10.hpi, scm-api-2.2.6.hpi</sub>
 
 SonarRunner
 
@@ -1225,7 +1225,7 @@ tools {
 }
 ```
 
-<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-2.7.1.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, script-security-1.40.hpi, structs-1.10.hpi</sub>
+<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-2.17.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, script-security-1.40.hpi, structs-1.10.hpi</sub>
 
 Splunk
 
@@ -1310,7 +1310,7 @@ systemMessage {
 }
 ```
 
-<sub>Tested Plugin Versions: NA</sub>
+<sub>Tested Plugin Versions: antisamy-markup-formatter-1.5.hpi</sub>
 
 SystemProperties
 

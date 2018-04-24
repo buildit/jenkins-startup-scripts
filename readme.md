@@ -8,7 +8,7 @@ A collection of groovy scripts that can be used to simplify the configuration of
 
 ## Using the Scripts
 
-Though it is possible to run them without it, these scripts have been wrtten to work in conjunction with the jenkins-startup-scripts-runner project. Please see that project for details on how to confgure and invoke these scripts.
+Though it is possible to run them without it, these scripts have been wrtten to work in conjunction with the [Jenkins Startup Scripts Runner](https://github.com/buildit/jenkins-startup-scripts-runner) project. Please see that project for details on how to confgure and invoke these scripts.
 
 ## Adding Scripts
 

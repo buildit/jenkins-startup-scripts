@@ -16,6 +16,7 @@ PLUGIN_EXT = "hpi"
 PLUGIN_CACHE_DIR = "${jenkinsHome}/plugins-cache"
 PLUGINS_DIR = "${jenkinsHome}/plugins"
 PLUGIN_LOG = "${PLUGINS_DIR}/plugins.log"
+RETRY_COUNT = 2
 
 
 String hash = getHash(config)
@@ -64,7 +65,7 @@ String hashString(String string) {
     return stringBuffer.toString()
 }
 
-def resolvePlugins(pattern, plugins) {
+def resolvePlugins(pattern, plugins, retries=RETRY_COUNT) {
 
     IvySettings ivySettings = new IvySettings()
     ivySettings.setDefaultCache(new File("${PLUGIN_CACHE_DIR}"))
@@ -102,6 +103,16 @@ def resolvePlugins(pattern, plugins) {
     ResolveOptions resolveOptions = new ResolveOptions().setConfs(confs)
 
     ResolveReport report = ivy.resolve(ivyfile.toURL(), resolveOptions)
+
+    if(report.hasError()) {
+        if(retries > 0) {
+            newRetryCount = retries - 1
+            println("Error resolving plugins. Initiating retry. Retries remaining = ${newRetryCount}")
+            resolvePlugins(pattern, plugins, newRetryCount)
+        } else {
+            throw new IllegalStateException("Error resolving plugins. See log for details.")
+        }
+    }
 
     def results = []
     report.getAllArtifactsReports().each {

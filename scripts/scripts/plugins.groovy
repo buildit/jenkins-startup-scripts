@@ -16,7 +16,7 @@ PLUGIN_EXT = "hpi"
 PLUGIN_CACHE_DIR = "${jenkinsHome}/plugins-cache"
 PLUGINS_DIR = "${jenkinsHome}/plugins"
 PLUGIN_LOG = "${PLUGINS_DIR}/plugins.log"
-RETRY_COUNT = 2
+RETRY_COUNT = 5
 
 
 String hash = getHash(config)
@@ -108,7 +108,7 @@ def resolvePlugins(pattern, plugins, retries=RETRY_COUNT) {
         if(retries > 0) {
             newRetryCount = retries - 1
             println("Error resolving plugins. Initiating retry. Retries remaining = ${newRetryCount}")
-            resolvePlugins(pattern, plugins, newRetryCount)
+            return resolvePlugins(pattern, plugins, newRetryCount)
         } else {
             throw new IllegalStateException("Error resolving plugins. See log for details.")
         }

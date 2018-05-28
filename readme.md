@@ -110,7 +110,7 @@ tools {
                   [
                     url: 'http://confluence.sandbox.extranet.group/',
                     username: 'arvind.kumar',
-                    password: 'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)'
+                    password: 'ENC(AAAADMlEpxykoqaB2T3ilF48y9tU0RuTh08QXuYdA9fy359sMJc506xz)'
                   ]
               ]
 }
@@ -122,15 +122,15 @@ Credentials
 
 ```groovy
 credentials {
-    repository=['username':'repository', 'password':'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)', 'description':'repository credentials']
-    cloud=['username':'cloud', 'password':'ENC(FtBGXIAp6Ks=)', 'description':'cloud credentials']
-    ssh=['username':'ssh', 'password':'ENC(FtBGXIAp6Ks=)', 'description':'node credentials', 'type': 'SSH', 'privateKeyFile':'.ssh/id_rsa']
+    repository=['username':'repository', 'password':'ENC(AAAADKGPigC2vDGp7Btx8Z+KyEmJUp8DobiaJ9QoaoxS0nWk7feTvo0O)', 'description':'repository credentials']
+    cloud=['username':'cloud', 'password':'ENC(AAAADBG5Hw+6UzWIbJQogBA7PjSUDZAF4TGqfwzkuL/CbbTn8w==)', 'description':'cloud credentials']
+    ssh=['username':'ssh', 'password':'ENC(AAAADDp9istmVU5kLc8CDFArqEAWel5iQmveVw/ro3bgwY1QLQ==)', 'description':'node credentials', 'type': 'SSH', 'privateKeyFile':'.ssh/id_rsa']
     vault=['description': 'vault credentials', 'key':'super/secret', 'usernameKey': "username", 'passwordKey': "password", 'type': 'HashicorpVault']
     saucelabs=['description': 'SauceLabs credentials', 'username': 'slUser', 'apiKey': 'slApiKey', 'type': 'SauceLabs']
-    gitlab=['description': 'Gitlab credentials', 'token': 'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)', 'type': 'GitLabApiToken']
-    string=['description': 'auth token', 'token': 'ENC(RUa6u7bp0SpkbxktC6E8GQ==)', 'type': 'StringCredential']
-    azureServicePrinciple=['id': 'azure-sp-id', 'description': 'azure SP', 'subscriptionId':'aaaaa-bbbbb-ccccc', 'clientId': 'ddddd-eeeee-fffff', 'clientSecret': 'asadfasfasdfjk', 'tenantId': 'ggggg-hhhhh-iiiii', 'azureEnvironment': "Azure", 'type': 'AzureCredentials']
-    azureSecretString=['id': 'secret-id', 'description': 'secret-description', 'servicePrincipalId': 'azure-sp-id', 'secretIdentifier': 'https://mysecret', 'type': 'SecretStringCredentials']
+    gitlab=['description': 'Gitlab credentials', 'token': 'ENC(AAAADKDFECe0WbaVge4XD0Nia2fnfWhZ5Ee9CLfhixui/3ak128pV4fw)', 'type': 'GitLabApiToken']
+    string=['description': 'auth token', 'token': 'ENC(AAAADMoiy5CDV7xwFgER+pLGnPNRsYKtWstLzDgJYOiBn72y7KLu6/Di)', 'type': 'StringCredential']
+    azureServicePrinciple=['id': 'azure-sp-id', 'description': 'azure SP', 'subscriptionId':'ENC(AAAADKJo6t6KaVbHUf97+bW1VLTlzOdsWS+HRuAd/gCxOmWX/V7pffZx+dAO+6E41g==)', 'clientId': 'ENC(AAAADJEPBS43p1UhJ7tlU4uOXcBKlGTMOKfGuSmprEiK/wxt0t7xzbfPLJBKWkU/hA==)', 'clientSecret': 'ENC(AAAADLBZMqQnYTb7wQmW4ghcuB5KF0ZYzte/T0atslRqNHcsMYtFbv52Lv4OQQ==)', 'tenantId': 'ENC(AAAADCdXyebPUb7kYsKy4lvPy6QSQf3OnkzPnPlUZVSZkdU8c0WPBs5kO1AhpawrSg==)', 'azureEnvironment': "Azure", 'type': 'AzureCredentials']
+    azureSecretString=['id': 'secret-id', 'description': 'secret-description', 'servicePrincipalId': 'azure-sp-id', 'secretIdentifier': 'ENC(AAAADDKoWcVCrE1bCld3s48MECqA8nQITPw6Go3kP+nVWqx5gb07iy4LwD4X+jhW)', 'type': 'SecretStringCredentials']
 }
 ```
 
@@ -177,30 +177,9 @@ files {
     privateKey=[
             path: '${jenkinsHome}/.ssh/id_rsa',
             mode:'600',
-            contents:'''ENC(LWk/qSmbM9xKKRX0o906g0GW1VSnFmeJpLx97XRwpS2GiIV0w/4eptWUb+/PvjG3rMotH+ZgwXAZH6W7yhFiJfe89INTAFheohNW
-                            wOJasq078wVzN2dYWYanNFIj/d+ZL6CU0X77rEXMsCSBpln64jWcUpkF0WwfJamePohldKa9FsIq/ZtCt772Lwm1cZspBShrGVvW
-                            ilcX0JE2IsuOOMUk0oyKrEbs4XhSLhz7cYfAO99O/QL4k9xb22Mr9IyqkTxm1ae33FbOgZ0Ih+aTlevRPLTWrju3SgFfHsqitJqy
-                            PLL2urcQli7qs3N818Fmn2WrL3zPQ1Czj76AfW2P2ZBH5mzCa9BY8iDZ715R+0X2zrzeip35uhXvcgxB1las2ChG34GHu6HqGQVT
-                            lzm42fHs4vPaSbI2XHciQExRtWLmx3m2HwLIzGrlDKpUVUXIlN0p2WjSf1yUblJkAmzkMbsz0oeIffmbTTASjgnVEpJ3fKTQw6J8
-                            yr59Y/7FguchfSbKo4u0240HM5lI3XyzyL90uU0jIb8ycLdC17vJutMhq3lJvfAHXBf6lB1QyHML8Q7pij/cknJCp+QYScKCg5bE
-                            zsY/2xYpKYwgSUvmvWh6ZRzlrMNPyDJq00mO5mbWT6VHyL5YgLLPOmBgQeKQO7RQRwGpMgNU6f6tzezgwX6il+7CvpAEj6/bpjo6
-                            TLpntJDuqOpGku1gvpYE5C/4FHM2Hrr94YxnR1XyispAhNIe6J/QOozFRH8uJxMhjIPI/+I0y3NjWVManctSfW6ZyCpnaBT6+w1X
-                            REX7jPF+XyETR0QnSSX0x1ByXB0ffHFrKr3mEK/5BfIILMK7O2K5rYd63pgRkaPBj7MlEXJafh7jyaVYG/zTUxSD6uV8tmCrdAjM
-                            CEAHfgp9PYWOk55A8uIC+kYrBMhIcj9p7QaCBqx/MN1DNAF6X3tuww4uxB4r4i1fUScDe52G5Y5QjM1f9NKfsIddUpQCfs7m2y95
-                            eY3w7q+4GBhl2KIkToNQ0pUkAPhCH+S9+EoLhvbVQUy7FC/U+zD7DGQFaYSBHLBP8ckY6IQHJQW4sGEezMWlRMiuACzNuMT9rGni
-                            C5yJ7I5cz0nJM5zOLA5c/BFOJkTK9Oy9p/YjteEFFhMfMbQsUWGR3hFJSqSijkBUeMnzm9thUbW7C6rvAahxmzaokAl5WuPZZylo
-                            IoZ/w+4QEPllMzh1W/nwV3Re0liPA5svqm1OHX2ckBzEXkN+KRz9LxyjJM0R0CYScxYlTNjB5aOJHao8ECVdH+RQQKcE3kW4DOSI
-                            KorQjm7vhNlpzfg2YGoYJxNkjeneBLjnH2w9Ibydxhcv0S2TK932DA1UAqUDHYyzS385toYlaExIL4Vu2xV+LapNKBc0ObWmP0hM
-                            jx3sYM2dZdsFlgmeHcFfLA4NYfJ/P5xV9Q4J4ndhL85T4xuevVrS0p21IZL36mbbcozrPqmnt2z3/0W8yYjes8dPQ85QDq+vHSU/
-                            zU/OVlwgjFb3vqj50hqqvPziB6T4ro5eZIpxNi0PHnXYo/L/mw0t58ewS7GG4TARywJaoYkc8q/lhLalm2VU9P+Q5WG9EOt697Y5
-                            i/7ly2MmkfVV4KeccqEbCXWDRVPMJVgFUPxoVjuqDndp4FXfSPBVl111bX+OgbtKBujUzO8dtWnAU5a2AApqhlokDMFaEcHIQXjx
-                            c1iYrTPy+62gVakWA+uFB4qOVz4kGuvFaWaRWLnkYIKzqQnYA+d5kaun12aozZXAR0LnIGchZ9su4gVP8Ljti/dFEyns+fC7Sx3M
-                            uwfqSWhdwnIwajwm73HPaU5FC9QsaRoj2p3hO5Of9TxeBa0UEZurRfBcgbSJDBOcWeNY7zgB2Yer2yt34FRl8OHW/xZnuHFJumSe
-                            5Q+KRqn/+lrFCfi8y7Egx/tXNroHyEeNw+AVSdXx0NpaDomMs/uLhzCbtinOchl4Y7Xr2HhWoL8CQPgkvbHSRrDtVYrbvz9njgGC
-                            MXDcSU77OYs+oEXtWF2N7DZvYj4y8lzKTM1m0pYuTFTmNBGiZOjOM+8kvk/jOf4rKmxfQ0BRgq8JmcSMFBL/yvN4J2SZis89wlpx
-                            dAPxxbjX+NZXS/01ZdpYPvGtJTlzmBq6DcL0ImErp5Cyp5LDw5coniOsXy5EUMzw30eNeLSd6FRiBZlFYq499qfxjHerJmPGCj4S
-                            0r/Ne3+qJ7S5eqWOMTB6o8mZHNBnukUq1mA8DqaClDjvbn9tNqH9VgDMPFJpTdfuSmT5RuiNfhNA/+/o2oYIE6LFK3MTirWdDycn
-                            uWlFRqM9UKGk9513lhiVd7Gi33NPOp6DPLzZ9mMKTHQNymZ5Fv3tkT+nTw==)'''
+
+            // This private key is not in the project.  If you need to re-encrypt, you need to generate a new key
+            contents:'''ENC(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)'''
     ]
     settingsXml=[
             path: 'settings.xml',
@@ -373,7 +352,7 @@ gitlab=[
 ]
 
 credentials {
-    gitlabCredentials = ['description': 'Gitlab credentials', 'token': 'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)', 'type': 'GitLabApiToken']
+    gitlabCredentials = ['description': 'Gitlab credentials', 'token': 'ENC(AAAADBCsrisG4HKN89K4oEKwHbHlA2wKZqR1n275eeadIXrVUTctvseX/jb9V6qv2w==)', 'type': 'GitLabApiToken']
 }
 ```
 
@@ -1082,7 +1061,7 @@ Passwords
 ```groovy
 env {
     passwords {
-        repository='ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)'
+        repository='ENC(AAAADF6IulRzxGoLgc3QerNDHPRdARvB3eJ3y1nLPk2PhxNt4VdE6ibH)'
     }
 }
 ```
@@ -1195,7 +1174,7 @@ tools {
                         name            : "SONAR",
                         serverUrl       : "http://10.113.140.170:9000/sonar",
                         sonarLogin      : "admin", //only required for v5.1-
-                        sonarPassword   : "ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)", //only required for v5.1-
+                        sonarPassword   : "ENC(AAAADF6IulRzxGoLgc3QerNDHPRdARvB3eJ3y1nLPk2PhxNt4VdE6ibH)", //only required for v5.1-
                         databaseUrl     : "jdbc:mysql://10.113.140.170:3306/sonarqube?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance", //only required for v5.1-
                         databaseLogin   : "sonarqube", //only required for v5.1-
                         databasePassword: "Y/a5t0YI5fmWqx1NEEYoKQ==" //only required for v5.1-
@@ -1264,7 +1243,7 @@ tools {
             [name             : 'dev-p1-app-01',
              hostname         : 'dev-p1-app-01',
              username         : 'user.name',
-             encryptedPassword: 'ENC(Y/a5t0YI5fmWqx1NEEYoKQ==)',
+             encryptedPassword: 'ENC(AAAADDi67hVsOnOklqPJMGDW/kYaYGtvwEBGYx6POU72V8IjL3durqHPZ8s=)',
              remoteRootDir    : '/home/user.name',
              port             : 22,
              timeout          : 300000,

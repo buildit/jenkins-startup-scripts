@@ -1,5 +1,6 @@
 package scripts
 
+import hudson.util.Secret
 import jenkins.model.Jenkins
 import org.junit.BeforeClass
 import org.junit.Test
@@ -19,7 +20,7 @@ class CredentialsTest extends StartupTest {
 
     @Test
     @LocalData
-    @WithPlugin(["hashicorp-vault-plugin-2.1.0.hpi", "hashicorp-vault-credentials-plugin-0.0.9.hpi", "credentials-binding-1.10.hpi",
+    @WithPlugin(["azure-credentials-1.6.0.hpi", "hashicorp-vault-plugin-2.1.0.hpi", "hashicorp-vault-credentials-plugin-0.0.9.hpi", "credentials-binding-1.16.hpi",
             "credentials-2.1.16.hpi", "workflow-api-2.26.hpi", "workflow-step-api-2.14.hpi", "structs-1.10.hpi", "plain-credentials-1.4.hpi",
             "ssh-credentials-1.13.hpi", "sauce-ondemand-1.164.hpi", "maven-plugin-2.17.hpi", "matrix-project-1.12.hpi",
             "workflow-basic-steps-2.5.hpi", "run-condition-1.0.hpi", "workflow-cps-2.23.hpi", "junit-1.23.hpi", "workflow-job-2.16.hpi",
@@ -30,6 +31,8 @@ class CredentialsTest extends StartupTest {
             "mailer-1.20.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureCredentialsFromConfig() {
+
+        //Thread.sleep(500000)
 
         def usernamePasswordCredentials = getCredentialsOfType("UsernamePasswordCredentialsImpl")
         assertThat(usernamePasswordCredentials[0].getUsername() as String, equalTo("repository"))
@@ -60,6 +63,21 @@ class CredentialsTest extends StartupTest {
         def stringCredentials = getCredentialsOfType("StringCredential")
         assertThat(stringCredentials[0].getSecret() as String, equalTo("somestring"))
         assertThat(stringCredentials[0].getDescription() as String, equalTo("auth token"))
+
+        def azureCredentials = getCredentialsOfType("AzureCredentials")
+        assertThat(azureCredentials[0].getId() as String, equalTo("azure-sp-id"))
+        assertThat(azureCredentials[0].getDescription() as String, equalTo("azure SP"))
+        assertThat(azureCredentials[0].getSubscriptionId() as String, equalTo("aaaaa-bbbbb-ccccc"))
+        assertThat(azureCredentials[0].getClientId() as String, equalTo("ddddd-eeeee-fffff"))
+        assertThat(Secret.decrypt(azureCredentials[0].getClientSecret()) as String, equalTo("asadfasfasdfjk"))
+        assertThat(azureCredentials[0].getTenant() as String, equalTo("ggggg-hhhhh-iiiii"))
+        assertThat(azureCredentials[0].getAzureEnvironmentName() as String, equalTo("Azure"))
+
+        def azureSecretString = getCredentialsOfType("SecretStringCredentials")
+        assertThat(azureSecretString[0].getId() as String, equalTo("secret-id"))
+        assertThat(azureSecretString[0].getDescription() as String, equalTo("secret-description"))
+        assertThat(azureSecretString[0].getServicePrincipalId() as String, equalTo("azure-sp-id"))
+        assertThat(azureSecretString[0].getSecretIdentifier() as String, equalTo("https://mysecret"))
     }
 
     private getCredentialsOfType(String type) {

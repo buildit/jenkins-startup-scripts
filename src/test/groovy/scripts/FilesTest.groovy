@@ -36,6 +36,9 @@ class FilesTest extends StartupTest {
             assertThat(permissions, equalTo("rw-------"))
         } catch (UnsupportedOperationException e) {
         }
+
+        // This private key is not in the project.  If you need to re-encrypt,
+        // you need to generate a new key,  encrypt it, and put it in FilesTest/jenkins.config
         assertThat(file.text as String, startsWith("-----BEGIN RSA PRIVATE KEY----"))
     }
 

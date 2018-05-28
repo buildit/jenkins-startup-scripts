@@ -1,14 +1,14 @@
 
 
 import groovy.text.SimpleTemplateEngine
-import org.acegisecurity.util.EncryptionUtils
+import com.buildit.encryptor.Encryptor
 import jenkins.model.Jenkins
 import org.codehaus.groovy.control.CompilerConfiguration
 import static Constants.*
 
 import static groovy.io.FileType.FILES
 
-SECRET = "144d7e29-9ae5-4ea1-afa6-4d3940f7de90"
+SECRET = "c4cad7fd3cf61a3f"
 
 class Constants {
     static final DEFAULT_FILE = 'jenkins.config'
@@ -101,7 +101,7 @@ def decryptConfigValues(String config, String secret){
 }
 
 private decryptPassword(password, secret) {
-    EncryptionUtils.decrypt(secret, password)
+    Encryptor.decrypt(secret, password)
 }
 
 def load(script, args=[:], classLoader=this.class.classLoader){

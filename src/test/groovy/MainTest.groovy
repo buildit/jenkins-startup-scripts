@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat
 
 class MainTest {
 
-    private static final String SECRET = "144d7e29-9ae5-4ea1-afa6-4d3940f7de90"
+    private static final String SECRET = "c4cad7fd3cf61a3f"
 
     @Rule
     public TemporaryFolder folder = new TemporaryFolder()

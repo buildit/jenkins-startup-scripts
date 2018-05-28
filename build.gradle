@@ -156,6 +156,8 @@ dependencies {
 
     compile 'org.codehaus.groovy:groovy-all:2.4.11'
 
+    testCompile 'com.buildit:encryptor:2.1.0'
+
     testCompile 'org.jenkins-ci.main:jenkins-test-harness:2.38'
     testCompile "org.jenkins-ci.main:jenkins-war:2.99"
 
@@ -177,6 +179,9 @@ repositories {
     }
     maven {
         url 'https://repo.jenkins-ci.org/public/'
+    }
+    maven {
+        url 'https://dl.bintray.com/buildit/maven'
     }
     mavenLocal()
     mavenCentral()

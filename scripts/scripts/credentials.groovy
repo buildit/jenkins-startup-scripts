@@ -54,6 +54,9 @@ private user(credentials, key) {
         case 'SecretStringCredentials':
             def constructor = Class.forName("com.microsoft.jenkins.keyvault.SecretStringCredentials").getConstructor(CredentialsScope.class, String.class, String.class, String.class, String.class)
             return constructor.newInstance(CredentialsScope.GLOBAL, credentials.id, credentials.description, credentials.servicePrincipalId, credentials.secretIdentifier)
+        case 'kubernetesServiceAccount':
+            def constructor = Class.forName("org.jenkinsci.plugins.kubernetes.credentials.FileSystemServiceAccountCredential").getConstructor(CredentialsScope.class, String.class, String.class)
+            return constructor.newInstance(CredentialsScope.GLOBAL, credentials.id, credentials.description)
         default:
             return new UsernamePasswordCredentialsImpl(CredentialsScope.GLOBAL, key, credentials.description, credentials.username, credentials.password)
     }

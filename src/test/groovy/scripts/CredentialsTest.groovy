@@ -28,7 +28,7 @@ class CredentialsTest extends StartupTest {
             "workflow-scm-step-2.6.hpi", "workflow-support-2.16.hpi", "ace-editor-1.0.1.hpi", "jquery-detached-1.2.1.hpi",
             "scm-api-2.2.6.hpi", "workflow-cps-2.23.hpi", "gitlab-plugin-1.4.8.hpi", "git-3.7.0.hpi", "git-client-2.7.0.hpi",
             "cloudbees-folder-6.1.0.hpi", "apache-httpcomponents-client-4-api-4.5.3-2.1.hpi", "jsch-0.1.54.1.hpi", "display-url-api-2.2.0.hpi",
-            "mailer-1.20.hpi"])
+            "mailer-1.20.hpi","kubernetes-credentials-0.3.1.hpi","kubernetes-1.5.2.hpi","durable-task-1.16.hpi","variant-1.1.hpi","kubernetes-cli-1.0.0.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureCredentialsFromConfig() {
 
@@ -78,6 +78,11 @@ class CredentialsTest extends StartupTest {
         assertThat(azureSecretString[0].getDescription() as String, equalTo("secret-description"))
         assertThat(azureSecretString[0].getServicePrincipalId() as String, equalTo("azure-sp-id"))
         assertThat(azureSecretString[0].getSecretIdentifier() as String, equalTo("https://mysecret"))
+
+
+        def k8sServiceAccount = getCredentialsOfType("kubernetesServiceAccount")
+        assertThat(k8sServiceAccount[0].getId() as String, equalTo("secret-id"))
+        assertThat(k8sServiceAccount[0].getDescription() as String, equalTo("secret-description"))
     }
 
     private getCredentialsOfType(String type) {

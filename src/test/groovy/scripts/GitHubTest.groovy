@@ -7,13 +7,14 @@ import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
 import static org.hamcrest.CoreMatchers.containsString
+import static org.hamcrest.CoreMatchers.equalTo
 import static org.junit.Assert.assertThat
 
 class GitHubTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
-        setUp(GitHubTest.class, ["scripts/github.groovy"])
+        setUp(GitHubTest.class, ["scripts/credentials.groovy", "scripts/github.groovy"])
     }
 
     @Test
@@ -24,11 +25,18 @@ class GitHubTest extends StartupTest {
             "ssh-credentials-1.13.hpi", "apache-httpcomponents-client-4-api-4.5.3-2.1.hpi", "jsch-0.1.54.1.hpi",
             "junit-1.23.hpi", "script-security-1.40.hpi", "workflow-api-2.26.hpi", "workflow-step-api-2.14.hpi",
             "workflow-scm-step-2.6.hpi", "jackson2-api-2.8.10.1.hpi", "plain-credentials-1.4.hpi",
-            "token-macro-2.3.hpi", "workflow-job-2.16.hpi", "workflow-support-2.16.hpi"])
+            "token-macro-2.3.hpi", "workflow-job-2.16.hpi", "workflow-support-2.16.hpi", "branch-api-2.0.19.hpi",
+            "cloudbees-folder-6.1.0.hpi"
+    ])
     @ZipTestFiles(files = ["jenkins.config"])
-    void shouldConfigureGitHubEnterprise() {
+    void shouldConfigureGitHub() {
         def nodejsConfig = new File(jenkinsRule.jenkins.root.getAbsoluteFile(), "org.jenkinsci.plugins.github_branch_source.GitHubConfiguration.xml").text
         assertThat(nodejsConfig, containsString("<apiUri>https://github.com</apiUri>"))
         assertThat(nodejsConfig, containsString("<name>GitHub</name>"))
+
+        def organisation = jenkinsRule.jenkins.getItem("buildit")
+        assertThat(organisation.displayName, equalTo("Buildit"))
+        assertThat(organisation.name, equalTo("buildit"))
+        assertThat(organisation.description, equalTo("Buildit Github Organisation"))
     }
 }

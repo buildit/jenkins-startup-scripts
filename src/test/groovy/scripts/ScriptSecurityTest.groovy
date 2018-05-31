@@ -22,7 +22,7 @@ class ScriptSecurityTest extends StartupTest {
 
     @Test
     @LocalData
-    @WithPlugin(["script-security-1.40.hpi"])
+    @WithPlugin(["script-security-1.44.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldAddSignaturesToApprovedList() {
         def plugin = jenkinsRule.jenkins.getPlugin('script-security')

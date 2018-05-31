@@ -22,7 +22,7 @@ class SplunkTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
-    @WithPlugin(["splunk-devops-1.6.0.hpi", "script-security-1.40.hpi"])
+    @WithPlugin(["splunk-devops-1.6.0.hpi", "script-security-1.44.hpi"])
     void allValuesPopulated() {
         def config = jenkinsRule.instance.getExtensionList('com.splunk.splunkjenkins.SplunkJenkinsInstallation')[0]
 

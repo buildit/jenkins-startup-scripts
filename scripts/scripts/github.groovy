@@ -56,6 +56,17 @@ void createOrganisationFolder(organisation) {
             new BranchDiscoveryTrait(3),
             new OriginPullRequestDiscoveryTrait(3),
     ]
+
+    if (organisation.containsKey('jenkinsfiles')) {
+        // clear out defaults
+        folder.getProjectFactories().clear()
+        organisation.jenkinsfiles.each { value ->
+            def factory = new org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProjectFactory()
+            factory.setScriptPath(value)
+            folder.getProjectFactories().add(factory)
+        }
+    }
+
     folder.navigators.replace(navigator)
     jenkins.save()
 }

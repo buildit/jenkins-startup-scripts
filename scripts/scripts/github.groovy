@@ -12,34 +12,16 @@ import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredenti
 
 import static jenkins.model.Jenkins.instance as jenkins
 
-GitHubConfiguration gitHubConfig = GlobalConfiguration.all().get(GitHubConfiguration.class)
-
-Endpoint gheApiEndpoint = new Endpoint(config.apiUrl, config.name)
-List<Endpoint> endpointList = new ArrayList<Endpoint>()
-endpointList.add(gheApiEndpoint)
-gitHubConfig.setEndpoints(endpointList)
-
 config.organisations.each {
     createOrganisationFolder(it)
 }
 
-static Boolean organisationFolderExists(String name) {
-    def folders = jenkins.items
-    if (folders.isEmpty()) {
-        return false
+void createOrganisationFolder(organisation) {
+
+    if (isNewEndpoint(organisation)) {
+        addEndpoint(organisation)
     }
 
-    def organisation = folders.find { folder -> folder.name == name }
-
-    return organisation
-}
-
-String lookupApiUri(String apiEndpoint) {
-    GitHubConfiguration gitHubConfig = GitHubConfiguration.get()
-    gitHubConfig.getEndpoints().findResult { it.name == apiEndpoint ? it.apiUri : null }
-}
-
-void createOrganisationFolder(organisation) {
     def folder = jenkins.createProject(OrganizationFolder, organisation.name)
     folder.displayName = organisation.displayName
     folder.description = organisation.description
@@ -70,6 +52,27 @@ void createOrganisationFolder(organisation) {
     folder.navigators.replace(navigator)
     jenkins.save()
 }
+
+String lookupApiUri(String apiEndpoint) {
+    GitHubConfiguration gitHubConfig = GitHubConfiguration.get()
+    gitHubConfig.getEndpoints().findResult { it.name == apiEndpoint ? it.apiUri : null }
+}
+
+static boolean isNewEndpoint(organisation) {
+    return (organisation.containsKey('apiEndpointUrl') && organisation.containsKey('apiEndpointName'))
+}
+
+void addEndpoint(organisation) {
+    GitHubConfiguration gitHubConfig = GlobalConfiguration.all().get(GitHubConfiguration.class)
+
+    Endpoint gheApiEndpoint = new Endpoint(organisation.apiEndpointUrl, organisation.apiEndpointName)
+    List<Endpoint> endpointList = new ArrayList<Endpoint>()
+    endpointList.add(gheApiEndpoint)
+    gitHubConfig.setEndpoints(endpointList)
+}
+
+
+
 
 
 

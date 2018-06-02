@@ -20,7 +20,7 @@ class GitHubTest extends StartupTest {
     @LocalData
     @WithPlugin(["github-branch-source-2.3.2.hpi", "github-1.28.1.hpi", "credentials-2.1.16.hpi",
             "display-url-api-2.2.0.hpi", "git-3.7.0.hpi", "github-api-1.90.hpi", "scm-api-2.2.6.hpi",
-            "structs-1.10.hpi", "git-client-2.7.0.hpi", "mailer-1.20.hpi", "matrix-project-1.12.hpi",
+            "structs-1.14.hpi", "git-client-2.7.0.hpi", "mailer-1.20.hpi", "matrix-project-1.12.hpi",
             "ssh-credentials-1.13.hpi", "apache-httpcomponents-client-4-api-4.5.3-2.1.hpi", "jsch-0.1.54.1.hpi",
             "junit-1.23.hpi", "script-security-1.40.hpi", "workflow-api-2.26.hpi", "workflow-step-api-2.14.hpi",
             "workflow-scm-step-2.6.hpi", "jackson2-api-2.8.10.1.hpi", "plain-credentials-1.4.hpi",

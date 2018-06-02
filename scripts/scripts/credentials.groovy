@@ -45,15 +45,18 @@ private user(credentials, key) {
             return constructor.newInstance(CredentialsScope.GLOBAL, key, credentials.description, new Secret(credentials.token))
         case 'StringCredential':
             return new StringCredentialsImpl(CredentialsScope.GLOBAL, key, credentials.description, new Secret(credentials.token))
-        case 'AzureCredentials':
-            def azureCredentialsConstructor = Class.forName("com.microsoft.azure.util.AzureCredentials").getConstructor(CredentialsScope.class, String.class, String.class, String.class, String.class, String.class)
-            def azureCredentials = azureCredentialsConstructor.newInstance(CredentialsScope.GLOBAL, credentials.id, credentials.description, credentials.subscriptionId, credentials.clientId, credentials.clientSecret)
-            azureCredentials.setTenant(credentials.tenantId)
-            azureCredentials.setAzureEnvironmentName(credentials.azureEnvironment)
-            return azureCredentials
+        case 'AzureServicePrincipal':
+            def constructor = Class.forName("com.microsoft.azure.util.AzureCredentials").getConstructor(CredentialsScope.class, String.class, String.class, String.class, String.class, String.class)
+            def azureServicePrincipal = constructor.newInstance(CredentialsScope.GLOBAL, credentials.id, credentials.description, credentials.subscriptionId, credentials.clientId, credentials.clientSecret)
+            azureServicePrincipal.setTenant(credentials.tenantId)
+            azureServicePrincipal.setAzureEnvironmentName(credentials.azureEnvironment)
+            return azureServicePrincipal
         case 'SecretStringCredentials':
             def constructor = Class.forName("com.microsoft.jenkins.keyvault.SecretStringCredentials").getConstructor(CredentialsScope.class, String.class, String.class, String.class, String.class)
             return constructor.newInstance(CredentialsScope.GLOBAL, credentials.id, credentials.description, credentials.servicePrincipalId, credentials.secretIdentifier)
+        case 'AzureStorageAccount':
+            def constructor = Class.forName("com.microsoftopentechnologies.windowsazurestorage.helper.AzureCredentials").getConstructor(CredentialsScope.class, String.class, String.class, String.class, String.class, String.class)
+            return constructor.newInstance(CredentialsScope.GLOBAL, credentials.id, credentials.description, credentials.storageAccountName, credentials.storageKey, credentials.endpointUrl)
         default:
             return new UsernamePasswordCredentialsImpl(CredentialsScope.GLOBAL, key, credentials.description, credentials.username, credentials.password)
     }

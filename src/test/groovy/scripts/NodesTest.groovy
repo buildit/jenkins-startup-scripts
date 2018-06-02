@@ -23,7 +23,7 @@ class NodesTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
-    @WithPlugin(["ssh-slaves-1.1.hpi", "credentials-2.1.16.hpi", "structs-1.10.hpi", "ssh-credentials-1.13.hpi"])
+    @WithPlugin(["ssh-slaves-1.26.hpi", "credentials-2.1.16.hpi", "structs-1.14.hpi", "ssh-credentials-1.13.hpi","jdk-tool-1.1.hpi"])
     void shouldConfigureNodesFromConfig() {
         def node01 = jenkinsRule.jenkins.getNode("node 01") as Slave
         assertThat(node01.getNodeDescription(), equalTo("First node"))

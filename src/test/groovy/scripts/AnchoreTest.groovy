@@ -26,7 +26,7 @@ class AnchoreTest extends StartupTest {
     @LocalData
     @WithPlugin([
             "anchore-container-scanner-1.0.12.hpi",
-            "structs-1.10.hpi"])
+            "structs-1.14.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureAnchoreEngine() {
         def descriptor = jenkinsRule.instance.getDescriptor('com.anchore.jenkins.plugins.anchore.AnchoreBuilder')

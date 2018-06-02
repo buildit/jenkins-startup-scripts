@@ -30,7 +30,30 @@ dependencies {
                     ":apache-httpcomponents-client-4-api:4.5.3-2.1@hpi",
                     ":antisamy-markup-formatter:1.5@hpi",
                     ":azure-credentials:1.6.0@hpi",
+                    ":azure-commons:0.2.6@hpi",
                     ":cloudbees-folder:6.1.0@hpi",
+                    ":copyartifact:1.40@hpi",
+                    ":blueocean:1.5.0@hpi",
+                    ":blueocean-autofavorite:1.2.2@hpi",
+                    ":blueocean-bitbucket-pipeline:1.5.0@hpi",
+                    ":blueocean-commons:1.5.0@hpi",
+                    ":blueocean-config:1.5.0@hpi",
+                    ":blueocean-core-js:1.5.0@hpi",
+                    ":blueocean-dashboard:1.5.0@hpi",
+                    ":blueocean-display-url:2.2.0@hpi",
+                    ":blueocean-events:1.5.0@hpi",
+                    ":blueocean-git-pipeline:1.5.0@hpi",
+                    ":blueocean-github-pipeline:1.5.0@hpi",
+                    ":blueocean-i18n:1.5.0@hpi",
+                    ":blueocean-jira:1.5.0@hpi",
+                    ":blueocean-jwt:1.5.0@hpi",
+                    ":blueocean-personalization:1.5.0@hpi",
+                    ":blueocean-pipeline-api-impl:1.5.0@hpi",
+                    ":blueocean-pipeline-editor:1.5.0@hpi",
+                    ":blueocean-pipeline-scm-api:1.5.0@hpi",
+                    ":blueocean-rest:1.5.0@hpi",
+                    ":blueocean-rest-impl:1.5.0@hpi",
+                    ":blueocean-web:1.5.0@hpi",
                     ":config-file-provider:2.15.7@hpi",
                     ":confluence-publisher:1.8@hpi",
                     ":credentials:2.1.16@hpi",
@@ -41,7 +64,7 @@ dependencies {
                     ":email-ext:2.58@hpi",
                     ":envinject:1.91.3@hpi",
                     ":extended-choice-parameter:0.28@hpi",
-                    ":gerrit-trigger:2.17.2@hpi",
+                    ":gerrit-trigger:2.27.5@hpi",
                     ":git:3.7.0@hpi",
                     ":git-client:2.7.0@hpi",
                     ":git-server:1.7@hpi",
@@ -56,6 +79,7 @@ dependencies {
                     ":icon-shim:2.0.3@hpi",
                     ":jackson2-api:2.8.10.1@hpi",
                     ":javadoc:1.1@hpi",
+                    ":jdk-tool:1.1@hpi",
                     ":jira:2.2.1@hpi",
                     ":job-dsl:1.64@hpi",
                     ":jquery:1.11.2-0@hpi",
@@ -70,7 +94,7 @@ dependencies {
                     ":mask-passwords:2.10.1@hpi",
                     ":matrix-auth:1.4@hpi",
                     ":matrix-project:1.12@hpi",
-                    ":maven-plugin:2.17@hpi",
+                    ":maven-plugin:3.1.2@hpi",
                     ":nodejs:0.2.1@hpi",
                     ":mesos:0.14.1@hpi",
                     ":metrics:3.1.2.10@hpi",
@@ -84,10 +108,11 @@ dependencies {
                     ":sonar:2.6.1@hpi",
                     ":splunk-devops:1.6.0@hpi",
                     ":ssh-credentials:1.13@hpi",
-                    ":ssh-slaves:1.1@hpi",
-                    ":structs:1.10@hpi",
+                    ":ssh-slaves:1.26@hpi",
+                    ":structs:1.14@hpi",
                     ":token-macro:2.3@hpi",
                     ":variant:1.1@hpi",
+                    ":windows-azure-storage:0.3.9@hpi",
                     ":workflow-api:2.26@hpi",
                     ":workflow-basic-steps:2.5@hpi",
                     ":workflow-cps:2.23@hpi",
@@ -111,6 +136,10 @@ version = "${project.version}"
 
 test {
     forkEvery 1
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
 }
 
 task cleanPlugins {
@@ -159,7 +188,7 @@ dependencies {
     testCompile 'com.buildit:encryptor:2.1.0'
 
     testCompile 'org.jenkins-ci.main:jenkins-test-harness:2.38'
-    testCompile "org.jenkins-ci.main:jenkins-war:2.99"
+    testCompile "org.jenkins-ci.main:jenkins-war:2.125"
 
     testCompile "org.zeroturnaround:zt-zip:1.9"
     testCompile 'org.eclipse.jetty:jetty-server:9.2.3.v20140905'

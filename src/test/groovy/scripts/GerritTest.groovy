@@ -23,7 +23,7 @@ class GerritTest extends StartupTest {
 
     @Test
     @LocalData
-    @WithPlugin("gerrit-trigger-2.17.2.hpi")
+    @WithPlugin(["gerrit-trigger-2.27.5.hpi","structs-1.14.hpi"])
     @ZipTestFiles(files = ["jenkins.config", "gerrit_rsa"])
     void shouldConfigureGerritServerFromConfig() {
         def plugin = jenkinsRule.jenkins.getPlugin('gerrit-trigger')

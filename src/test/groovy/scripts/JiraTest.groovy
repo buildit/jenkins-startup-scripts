@@ -21,7 +21,7 @@ class JiraTest extends StartupTest {
     @Test
     @LocalData
     @WithPlugin(["jira-2.2.1.hpi", "matrix-project-1.12.hpi", "mailer-1.20.hpi", "junit-1.23.hpi", "script-security-1.40.hpi",
-            "structs-1.10.hpi", "workflow-step-api-2.14.hpi", "workflow-api-2.26.hpi", "junit-1.23.hpi", "scm-api-2.2.6.hpi",
+            "structs-1.14.hpi", "workflow-step-api-2.14.hpi", "workflow-api-2.26.hpi", "junit-1.23.hpi", "scm-api-2.2.6.hpi",
             "display-url-api-2.2.0.hpi", "mailer-1.20.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureJiraSitesWhenAvailable() {

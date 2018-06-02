@@ -18,7 +18,7 @@ class LogstashTest extends StartupTest {
 
     @Test
     @LocalData
-    @WithPlugin(["logstash-1.3.0.hpi", "mask-passwords-2.10.1.hpi", "structs-1.10.hpi", "junit-1.23.hpi", "script-security-1.40.hpi",
+    @WithPlugin(["logstash-1.3.0.hpi", "mask-passwords-2.10.1.hpi", "structs-1.14.hpi", "junit-1.23.hpi", "script-security-1.40.hpi",
             "workflow-step-api-2.14.hpi", "workflow-api-2.26.hpi", "scm-api-2.2.6.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureLogstashFromConfig() {

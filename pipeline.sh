@@ -4,7 +4,7 @@ setUpGit() {
 }
 
 build() {
-  gradle build --info
+  gradle build
 }
 
 deploy() {

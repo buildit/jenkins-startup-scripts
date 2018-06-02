@@ -21,18 +21,17 @@ class CredentialsTest extends StartupTest {
     @Test
     @LocalData
     @WithPlugin(["azure-credentials-1.6.0.hpi", "hashicorp-vault-plugin-2.1.0.hpi", "hashicorp-vault-credentials-plugin-0.0.9.hpi", "credentials-binding-1.16.hpi",
-            "credentials-2.1.16.hpi", "workflow-api-2.26.hpi", "workflow-step-api-2.14.hpi", "structs-1.10.hpi", "plain-credentials-1.4.hpi",
-            "ssh-credentials-1.13.hpi", "sauce-ondemand-1.164.hpi", "maven-plugin-2.17.hpi", "matrix-project-1.12.hpi",
+            "credentials-2.1.16.hpi", "workflow-api-2.26.hpi", "workflow-step-api-2.14.hpi", "structs-1.14.hpi", "plain-credentials-1.4.hpi",
+            "ssh-credentials-1.13.hpi", "sauce-ondemand-1.164.hpi", "maven-plugin-3.1.2.hpi", "matrix-project-1.12.hpi",
             "workflow-basic-steps-2.5.hpi", "run-condition-1.0.hpi", "workflow-cps-2.23.hpi", "junit-1.23.hpi", "workflow-job-2.16.hpi",
             "script-security-1.40.hpi", "javadoc-1.1.hpi", "token-macro-2.3.hpi",
             "workflow-scm-step-2.6.hpi", "workflow-support-2.16.hpi", "ace-editor-1.0.1.hpi", "jquery-detached-1.2.1.hpi",
             "scm-api-2.2.6.hpi", "workflow-cps-2.23.hpi", "gitlab-plugin-1.4.8.hpi", "git-3.7.0.hpi", "git-client-2.7.0.hpi",
             "cloudbees-folder-6.1.0.hpi", "apache-httpcomponents-client-4-api-4.5.3-2.1.hpi", "jsch-0.1.54.1.hpi", "display-url-api-2.2.0.hpi",
-            "mailer-1.20.hpi"])
+            "mailer-1.20.hpi","windows-azure-storage-0.3.9.hpi", "azure-commons-0.2.6.hpi","copyartifact-1.40.hpi","blueocean-rest-1.5.0.hpi",
+            "blueocean-commons-1.5.0.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureCredentialsFromConfig() {
-
-        //Thread.sleep(500000)
 
         def usernamePasswordCredentials = getCredentialsOfType("UsernamePasswordCredentialsImpl")
         assertThat(usernamePasswordCredentials[0].getUsername() as String, equalTo("repository"))
@@ -64,7 +63,7 @@ class CredentialsTest extends StartupTest {
         assertThat(stringCredentials[0].getSecret() as String, equalTo("somestring"))
         assertThat(stringCredentials[0].getDescription() as String, equalTo("auth token"))
 
-        def azureCredentials = getCredentialsOfType("AzureCredentials")
+        def azureCredentials = getCredentialsOfType("com.microsoft.azure.util.AzureCredentials")
         assertThat(azureCredentials[0].getId() as String, equalTo("azure-sp-id"))
         assertThat(azureCredentials[0].getDescription() as String, equalTo("azure SP"))
         assertThat(azureCredentials[0].getSubscriptionId() as String, equalTo("aaaaa-bbbbb-ccccc"))
@@ -78,6 +77,13 @@ class CredentialsTest extends StartupTest {
         assertThat(azureSecretString[0].getDescription() as String, equalTo("secret-description"))
         assertThat(azureSecretString[0].getServicePrincipalId() as String, equalTo("azure-sp-id"))
         assertThat(azureSecretString[0].getSecretIdentifier() as String, equalTo("https://mysecret"))
+
+        def azureStorageAccount = getCredentialsOfType("com.microsoftopentechnologies.windowsazurestorage.helper.AzureCredentials")
+        assertThat(azureStorageAccount[0].getId() as String, equalTo("az-storage-creds-id"))
+        assertThat(azureStorageAccount[0].getDescription() as String, equalTo("az storage credentials"))
+        assertThat(azureStorageAccount[0].getStorageAccountName() as String, equalTo("testsa"))
+        assertThat(Secret.decrypt(azureStorageAccount[0].getStorageKey()) as String, equalTo("somestoragekey"))
+        assertThat(azureStorageAccount[0].getBlobEndpointURL() as String, equalTo("https://testsa.blob.core.windows.net"))
     }
 
     private getCredentialsOfType(String type) {

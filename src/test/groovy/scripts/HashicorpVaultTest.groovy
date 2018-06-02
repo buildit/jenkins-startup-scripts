@@ -19,7 +19,7 @@ class HashicorpVaultTest extends StartupTest {
     @Test
     @LocalData
     @WithPlugin(["hashicorp-vault-plugin-2.1.0.hpi", "workflow-scm-step-2.6.hpi", "cloudbees-folder-6.1.0.hpi",
-            "credentials-2.1.16.hpi", "workflow-step-api-2.14.hpi", "structs-1.10.hpi", "ssh-credentials-1.13.hpi"])
+            "credentials-2.1.16.hpi", "workflow-step-api-2.14.hpi", "structs-1.14.hpi", "ssh-credentials-1.13.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureVaultDetailsFromConfig() {
         def vaultConfig = new File(jenkinsRule.jenkins.root.getAbsoluteFile(), "com.datapipe.jenkins.vault.configuration.GlobalVaultConfiguration.xml").text

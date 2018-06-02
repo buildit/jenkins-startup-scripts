@@ -12,15 +12,13 @@ import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredenti
 
 import static jenkins.model.Jenkins.instance as jenkins
 
+addEndpoints()
+
 config.organisations.each {
     createOrganisationFolder(it)
 }
 
 void createOrganisationFolder(organisation) {
-
-    if (isNewEndpoint(organisation)) {
-        addEndpoint(organisation)
-    }
 
     def folder = jenkins.createProject(OrganizationFolder, organisation.name)
     folder.displayName = organisation.displayName
@@ -58,17 +56,14 @@ String lookupApiUri(String apiEndpoint) {
     gitHubConfig.getEndpoints().findResult { it.name == apiEndpoint ? it.apiUri : null }
 }
 
-static boolean isNewEndpoint(organisation) {
-    return (organisation.containsKey('apiEndpointUrl') && organisation.containsKey('apiEndpointName'))
-}
-
-void addEndpoint(organisation) {
+void addEndpoints() {
     GitHubConfiguration gitHubConfig = GlobalConfiguration.all().get(GitHubConfiguration.class)
+    gitHubConfig.getEndpoints().clear()
 
-    Endpoint gheApiEndpoint = new Endpoint(organisation.apiEndpointUrl, organisation.apiEndpointName)
-    List<Endpoint> endpointList = new ArrayList<Endpoint>()
-    endpointList.add(gheApiEndpoint)
-    gitHubConfig.setEndpoints(endpointList)
+    config.githubEnterpriseEndpoints.each { endpoint ->
+        Endpoint gheApiEndpoint = new Endpoint(endpoint.url, endpoint.name)
+        gitHubConfig.updateEndpoint(gheApiEndpoint)
+    }
 }
 
 

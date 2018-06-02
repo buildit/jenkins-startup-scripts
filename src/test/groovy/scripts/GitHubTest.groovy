@@ -32,6 +32,8 @@ class GitHubTest extends StartupTest {
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureGitHub() {
 
+        //Thread.sleep(500000)
+
         // github.com
         def githubOrganisation = jenkinsRule.jenkins.getItem("buildit")
         assertThat(githubOrganisation.displayName, equalTo("Buildit"))
@@ -48,20 +50,35 @@ class GitHubTest extends StartupTest {
         def xmlConfig = new File(jenkinsRule.jenkins.root.getAbsoluteFile(), "org.jenkinsci.plugins.github_branch_source.GitHubConfiguration.xml").text
         assertThat(xmlConfig, containsString("<apiUri>https://api.github.mycompany.com</apiUri>"))
         assertThat(xmlConfig, containsString("<name>MyCompany</name>"))
+        assertThat(xmlConfig, containsString("<apiUri>https://api.github.acme.com</apiUri>"))
+        assertThat(xmlConfig, containsString("<name>Acme</name>"))
 
-        def gheOrganisation = jenkinsRule.jenkins.getItem("mycompany")
-        assertThat(gheOrganisation.displayName, equalTo("MyCompany"))
-        assertThat(gheOrganisation.name, equalTo("mycompany"))
-        assertThat(gheOrganisation.description, equalTo("MyCompany Github Enterprise Organisation"))
+        // MyCompany org
+        def myCompanyOrg = jenkinsRule.jenkins.getItem("mycompany")
+        assertThat(myCompanyOrg.displayName, equalTo("MyCompany"))
+        assertThat(myCompanyOrg.name, equalTo("mycompany"))
+        assertThat(myCompanyOrg.description, equalTo("MyCompany Github Enterprise Organisation"))
 
-        def gheProjectFactories = gheOrganisation.getProjectFactories()
-        assertThat(gheProjectFactories.size(), equalTo(2))
+        def myCompanyProjectFactories = myCompanyOrg.getProjectFactories()
+        assertThat(myCompanyProjectFactories.size(), equalTo(2))
 
-        def gheProjectFactory0 = gheProjectFactories[0]
-        assertThat(gheProjectFactory0.scriptPath, equalTo('Jenkinsfile.prod'))
+        def myCompanyProjectFactory0 = myCompanyProjectFactories[0]
+        assertThat(myCompanyProjectFactory0.scriptPath, equalTo('Jenkinsfile.prod'))
 
-        def gheProjectFactory1 = gheProjectFactories[1]
-        assertThat(gheProjectFactory1.scriptPath, equalTo('Jenkinsfile.test'))
+        def myCompanyProjectFactory1 = myCompanyProjectFactories[1]
+        assertThat(myCompanyProjectFactory1.scriptPath, equalTo('Jenkinsfile.test'))
+
+        // Acme org
+        def acmeOrg = jenkinsRule.jenkins.getItem("acme")
+        assertThat(acmeOrg.displayName, equalTo("Acme"))
+        assertThat(acmeOrg.name, equalTo("acme"))
+        assertThat(acmeOrg.description, equalTo("Acme Github Enterprise Organisation"))
+
+        def acmeProjectFactories = acmeOrg.getProjectFactories()
+        assertThat(acmeProjectFactories.size(), equalTo(1))
+
+        def acmeProjectFactory0 = acmeProjectFactories[0]
+        assertThat(acmeProjectFactory0.scriptPath, equalTo('Jenkinsfile.acme'))
     }
 
 }

@@ -7,8 +7,6 @@ import org.jenkinsci.plugins.github_branch_source.BranchDiscoveryTrait
 import org.jenkinsci.plugins.github_branch_source.GitHubSCMNavigator
 import org.jenkinsci.plugins.github_branch_source.OriginPullRequestDiscoveryTrait
 import org.jenkinsci.plugins.github_branch_source.GitHubConfiguration
-import com.cloudbees.plugins.credentials.CredentialsProvider
-import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials
 
 import static jenkins.model.Jenkins.instance as jenkins
 
@@ -27,7 +25,6 @@ void createOrganisationFolder(organisation) {
     GitHubSCMNavigator navigator = new GitHubSCMNavigator(organisation.name)
 
     navigator.credentialsId = organisation.project.credentialsId
-    navigator.scanCredentialsId = organisation.project.scanCredentialsId
 
     navigator.apiUri = lookupApiUri(organisation.project.apiEndpoint)
     navigator.traits = [

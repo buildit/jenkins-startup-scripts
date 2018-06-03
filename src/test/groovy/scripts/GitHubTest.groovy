@@ -40,6 +40,9 @@ class GitHubTest extends StartupTest {
         assertThat(githubOrganisation.name, equalTo("buildit"))
         assertThat(githubOrganisation.description, equalTo("Buildit Github Organisation"))
 
+        def githubScmNavigator = githubOrganisation.getNavigators()[0]
+        assertThat(githubScmNavigator.credentialsId, equalTo("github"))
+
         def projectFactories = githubOrganisation.getProjectFactories()
         assertThat(projectFactories.size(), equalTo(1))
 
@@ -59,6 +62,9 @@ class GitHubTest extends StartupTest {
         assertThat(myCompanyOrg.name, equalTo("mycompany"))
         assertThat(myCompanyOrg.description, equalTo("MyCompany Github Enterprise Organisation"))
 
+        def myCompanyScmNavigator = myCompanyOrg.getNavigators()[0]
+        assertThat(myCompanyScmNavigator.credentialsId, equalTo("mycompany"))
+
         def myCompanyProjectFactories = myCompanyOrg.getProjectFactories()
         assertThat(myCompanyProjectFactories.size(), equalTo(2))
 
@@ -73,6 +79,9 @@ class GitHubTest extends StartupTest {
         assertThat(acmeOrg.displayName, equalTo("Acme"))
         assertThat(acmeOrg.name, equalTo("acme"))
         assertThat(acmeOrg.description, equalTo("Acme Github Enterprise Organisation"))
+
+        def acmeScmNavigator = acmeOrg.getNavigators()[0]
+        assertThat(acmeScmNavigator.credentialsId, equalTo("acme"))
 
         def acmeProjectFactories = acmeOrg.getProjectFactories()
         assertThat(acmeProjectFactories.size(), equalTo(1))

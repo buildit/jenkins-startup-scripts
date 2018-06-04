@@ -32,8 +32,6 @@ class GitHubTest extends StartupTest {
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureGitHub() {
 
-        //Thread.sleep(500000)
-
         // github.com
         def githubOrganisation = jenkinsRule.jenkins.getItem("buildit")
         assertThat(githubOrganisation.displayName, equalTo("Buildit"))

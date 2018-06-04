@@ -18,7 +18,12 @@ config.organisations.each {
 
 void createOrganisationFolder(organisation) {
 
-    def folder = jenkins.createProject(OrganizationFolder, organisation.name)
+    def folder = jenkins.getItem(organisation.name)
+
+    if(!folder && !(folder instanceof OrganizationFolder)){
+        folder = jenkins.createProject(OrganizationFolder, organisation.name)
+    }
+
     folder.displayName = organisation.displayName
     folder.description = organisation.description
 

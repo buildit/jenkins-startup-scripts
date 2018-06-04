@@ -26,13 +26,14 @@ File log = new File(PLUGIN_LOG)
 if (log.exists()) {
     if (log.text == hash) {
         println("No changes to list of plugins detected. Nothing to do.")
+        return
     } else {
-        println("Changes detected to plugin list - contents of ${log.absolutePath} is '${log.text}' new hash is '${hash}'. Please redeploy jenkins instance.")
+        println("Changes detected to plugin list - contents of ${log.absolutePath} is '${log.text}' new hash is '${hash}'.")
     }
-    return
-}
 
-println("No plugin log found. Initiating plugin download")
+}else{
+    println("No plugin log found. Initiating plugin download")
+}
 
 def pluginsCache = []
 config.each { k, v ->
@@ -52,8 +53,9 @@ pluginsCache.each {
 println("Writing hash to ${log.absolutePath}")
 log.text = hash
 
-println("Initiating restart")
-instance.restart()
+println("Initiating immediate restart")
+
+hudson.lifecycle.Lifecycle.get().restart()
 
 String hashString(String string) {
     MessageDigest digest = MessageDigest.getInstance('MD5')

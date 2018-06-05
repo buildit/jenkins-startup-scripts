@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import java.nio.file.Files
 import java.nio.file.Paths
+import hudson.lifecycle.Lifecycle
 
 import static org.hamcrest.CoreMatchers.is
 import static org.junit.Assert.assertEquals
@@ -33,12 +34,9 @@ class PluginsTest extends StartupTest {
     @BeforeClass
     public static void setUp() {
         setUp(PluginsTest.class, ["scripts/plugins.groovy"])
-        Jenkins.metaClass.static.restart = {
-            def jenkinsHome = Jenkins.getInstance().getProperties().get("rootPath").toString()
-            File jenkinsConfig = new File("${jenkinsHome}/${RESTART_LOG}")
-            jenkinsConfig.withWriter { writer ->
-                writer.write("Restart Triggered!")
-            }
+        def lifeCycle = new LifecycleMock(RESTART_LOG)
+        Lifecycle.metaClass.static.get = {
+            return lifeCycle
         }
     }
 
@@ -104,5 +102,22 @@ class PluginsTest extends StartupTest {
             }
         }
         return found
+    }
+}
+
+class LifecycleMock {
+
+    private final String fileName
+
+    LifecycleMock(String fileName){
+        this.fileName = fileName
+    }
+
+    void restart(){
+        def jenkinsHome = Jenkins.getInstance().getProperties().get("rootPath").toString()
+        File jenkinsConfig = new File("${jenkinsHome}/${fileName}")
+        jenkinsConfig.withWriter { writer ->
+            writer.write("Restart Triggered!")
+        }
     }
 }

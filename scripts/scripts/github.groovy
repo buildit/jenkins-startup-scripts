@@ -1,13 +1,7 @@
 #!/usr/bin/env groovy
-
+import jenkins.branch.OrganizationFolder
 import jenkins.model.GlobalConfiguration
 import org.jenkinsci.plugins.github_branch_source.*
-import jenkins.branch.OrganizationFolder
-import org.jenkinsci.plugins.github_branch_source.BranchDiscoveryTrait
-import org.jenkinsci.plugins.github_branch_source.GitHubSCMNavigator
-import org.jenkinsci.plugins.github_branch_source.OriginPullRequestDiscoveryTrait
-import org.jenkinsci.plugins.github_branch_source.GitHubConfiguration
-
 import static jenkins.model.Jenkins.instance as jenkins
 
 addEndpoints()
@@ -18,16 +12,26 @@ config.organisations.each {
 
 void createOrganisationFolder(organisation) {
 
-    def folder = jenkins.getItem(organisation.name)
+    def orgName = organisation.name
+    def folder = jenkins.getItem(orgName)
 
-    if(!folder && !(folder instanceof OrganizationFolder)){
-        folder = jenkins.createProject(OrganizationFolder, organisation.name)
+    if(!folder) {
+        println "project ${orgName} doesn't exist, creating project"
+        folder = jenkins.createProject(OrganizationFolder, orgName)
+    }
+    else {
+        // for some weird reason an 'instanceof' check doesn't work in a running Jenkins...
+        def className = folder.getClass().getCanonicalName()
+        println "project ${orgName} already exists as type:" + folder.getClass().getCanonicalName()
+        if (className != 'jenkins.branch.OrganizationFolder') {
+            throw new RuntimeException("A job already exists with the organisation name ${orgName}")
+        }
     }
 
     folder.displayName = organisation.displayName
     folder.description = organisation.description
 
-    GitHubSCMNavigator navigator = new GitHubSCMNavigator(organisation.name)
+    GitHubSCMNavigator navigator = new GitHubSCMNavigator(organisation.project.owner)
 
     navigator.credentialsId = organisation.project.credentialsId
 

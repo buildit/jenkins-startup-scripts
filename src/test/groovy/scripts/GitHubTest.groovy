@@ -33,13 +33,14 @@ class GitHubTest extends StartupTest {
     void shouldConfigureGitHub() {
 
         // github.com
-        def githubOrganisation = jenkinsRule.jenkins.getItem("buildit")
-        assertThat(githubOrganisation.displayName, equalTo("Buildit"))
-        assertThat(githubOrganisation.name, equalTo("buildit"))
-        assertThat(githubOrganisation.description, equalTo("Buildit Github Organisation"))
+        def githubOrganisation = jenkinsRule.jenkins.getItem("buildit-name")
+        assertThat(githubOrganisation.displayName, equalTo("Buildit Display Name"))
+        assertThat(githubOrganisation.name, equalTo("buildit-name"))
+        assertThat(githubOrganisation.description, equalTo("Buildit Github Organisation Description"))
 
         def githubScmNavigator = githubOrganisation.getNavigators()[0]
         assertThat(githubScmNavigator.credentialsId, equalTo("github"))
+        assertThat(githubScmNavigator.repoOwner, equalTo("buildit-owner"))
 
         def projectFactories = githubOrganisation.getProjectFactories()
         assertThat(projectFactories.size(), equalTo(1))

@@ -100,7 +100,7 @@ configfiles {
 }
 ```
 
-<sub>Tested Plugin Versions: config-file-provider-2.15.7.hpi, credentials-2.1.16.hpi, ssh-credentials-1.13.hpi, structs-1.14.hpi, token-macro-2.3.hpi, workflow-job-2.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, workflow-support-2.16.hpi, scm-api-2.2.6.hpi, script-security-1.40.hpi</sub>
+<sub>Tested Plugin Versions: config-file-provider-2.15.7.hpi, credentials-2.1.16.hpi, ssh-credentials-1.13.hpi, structs-1.14.hpi, token-macro-2.3.hpi, workflow-job-2.21.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, workflow-support-2.17.hpi, scm-api-2.2.6.hpi, script-security-1.44.hpi</sub>
 
 Confluence
 
@@ -135,7 +135,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: azure-credentials-1.6.0.hpi, hashicorp-vault-plugin-2.1.0.hpi, hashicorp-vault-credentials-plugin-0.0.9.hpi, credentials-binding-1.16.hpi, credentials-2.1.16.hpi, workflow-api-2.26.hpi, workflow-step-api-2.14.hpi, structs-1.14.hpi, plain-credentials-1.4.hpi, ssh-credentials-1.13.hpi, sauce-ondemand-1.164.hpi, maven-plugin-3.1.2.hpi, matrix-project-1.12.hpi, workflow-basic-steps-2.5.hpi, run-condition-1.0.hpi, workflow-cps-2.23.hpi, junit-1.23.hpi, workflow-job-2.16.hpi, script-security-1.40.hpi, javadoc-1.1.hpi, token-macro-2.3.hpi, workflow-scm-step-2.6.hpi, workflow-support-2.16.hpi, ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, scm-api-2.2.6.hpi, workflow-cps-2.23.hpi, gitlab-plugin-1.4.8.hpi, git-3.7.0.hpi, git-client-2.7.0.hpi, cloudbees-folder-6.1.0.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi, windows-azure-storage-0.3.9.hpi, azure-commons-0.2.6.hpi, copyartifact-1.40.hpi, blueocean-rest-1.5.0.hpi, blueocean-commons-1.5.0.hpi</sub>
+<sub>Tested Plugin Versions: azure-credentials-1.6.0.hpi, hashicorp-vault-plugin-2.1.0.hpi, hashicorp-vault-credentials-plugin-0.0.9.hpi, credentials-binding-1.16.hpi, credentials-2.1.16.hpi, workflow-api-2.27.hpi, workflow-step-api-2.14.hpi, structs-1.14.hpi, plain-credentials-1.4.hpi, ssh-credentials-1.13.hpi, sauce-ondemand-1.164.hpi, maven-plugin-3.1.2.hpi, matrix-project-1.12.hpi, workflow-basic-steps-2.5.hpi, run-condition-1.0.hpi, workflow-cps-2.53.hpi, junit-1.23.hpi, workflow-job-2.21.hpi, script-security-1.44.hpi, javadoc-1.1.hpi, token-macro-2.3.hpi, workflow-scm-step-2.6.hpi, workflow-support-2.17.hpi, ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, scm-api-2.2.6.hpi, gitlab-plugin-1.4.8.hpi, git-3.7.0.hpi, git-client-2.7.0.hpi, cloudbees-folder-6.4.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi, windows-azure-storage-0.3.9.hpi, azure-commons-0.2.6.hpi, copyartifact-1.40.hpi, blueocean-rest-1.5.0.hpi, blueocean-commons-1.5.0.hpi</sub>
 
 CustomTool
 
@@ -327,13 +327,63 @@ tools {
 GitHub
 
 ```groovy
+credentials {
+    github=['username': 'jenkins', 'password': 'ENC(AAAADBCsrisG4HKN89K4oEKwHbHlA2wKZqR1n275eeadIXrVUTctvseX/jb9V6qv2w==)', 'description': 'GitHub Credentials']
+    mycompany=['username': 'jenkins', 'password': 'ENC(AAAADBCsrisG4HKN89K4oEKwHbHlA2wKZqR1n275eeadIXrVUTctvseX/jb9V6qv2w==)', 'description': 'MyCompany GitHub Credentials']
+    acme=['username': 'jenkins', 'password': 'ENC(AAAADBCsrisG4HKN89K4oEKwHbHlA2wKZqR1n275eeadIXrVUTctvseX/jb9V6qv2w==)', 'description': 'Acme GitHub Credentials']
+}
+
 github {
-  apiUrl = "https://github.com/"
-  name = "GitHub"
+    githubEnterpriseEndpoints=[
+        ['name': 'MyCompany','url': 'https://api.github.mycompany.com'],
+        ['name': 'Acme','url': 'https://api.github.acme.com']
+    ]
+    organisations=[
+            [
+                    name:"mycompany",
+                    displayName:"MyCompany",
+                    description:"MyCompany Github Enterprise Organisation",
+                    project:[
+                            apiEndpoint:"MyCompany",
+                            owner:"mycompany",
+                            credentialsId:"mycompany",
+                            repositoryNamePattern:"*"
+                    ],
+
+                    // explicit script path.  If left out, 'Jenkinsfile' will be the default
+                    jenkinsfiles: ['Jenkinsfile.prod', 'Jenkinsfile.test']
+            ],
+            [
+                    name:"acme",
+                    displayName:"Acme",
+                    description:"Acme Github Enterprise Organisation",
+                    project:[
+                            apiEndpoint:"Acme",
+                            owner:"acme",
+                            credentialsId:"acme",
+                            repositoryNamePattern:"*"
+                    ],
+
+                    // explicit script path.  If left out, 'Jenkinsfile' will be the default
+                    jenkinsfiles: ['Jenkinsfile.acme']
+            ],
+            [
+                    // Github.com
+                    name:"buildit-name",
+                    displayName:"Buildit Display Name",
+                    description:"Buildit Github Organisation Description",
+                    project:[
+                            apiEndpoint:"GitHub",  // default endpoint present in Jenkins for github.com
+                            owner:"buildit-owner",
+                            credentialsId:"github",
+                            repositoryNamePattern:"*"
+                    ]
+             ]
+    ]
 }
 ```
 
-<sub>Tested Plugin Versions: github-branch-source-2.3.2.hpi, github-1.28.1.hpi, credentials-2.1.16.hpi, display-url-api-2.2.0.hpi, git-3.7.0.hpi, github-api-1.90.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, git-client-2.7.0.hpi, mailer-1.20.hpi, matrix-project-1.12.hpi, ssh-credentials-1.13.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, junit-1.23.hpi, script-security-1.40.hpi, workflow-api-2.26.hpi, workflow-step-api-2.14.hpi, workflow-scm-step-2.6.hpi, jackson2-api-2.8.10.1.hpi, plain-credentials-1.4.hpi, token-macro-2.3.hpi, workflow-job-2.16.hpi, workflow-support-2.16.hpi</sub>
+<sub>Tested Plugin Versions: github-branch-source-2.3.4.hpi, github-1.28.1.hpi, credentials-2.1.16.hpi, display-url-api-2.2.0.hpi, git-3.7.0.hpi, github-api-1.90.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, git-client-2.7.0.hpi, mailer-1.20.hpi, matrix-project-1.12.hpi, ssh-credentials-1.13.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, junit-1.23.hpi, script-security-1.44.hpi, workflow-api-2.27.hpi, workflow-step-api-2.14.hpi, workflow-scm-step-2.6.hpi, jackson2-api-2.8.10.1.hpi, plain-credentials-1.4.hpi, token-macro-2.3.hpi, workflow-job-2.21.hpi, workflow-support-2.17.hpi, branch-api-2.0.19.hpi, cloudbees-folder-6.4.hpi, workflow-multibranch-2.19.hpi, workflow-multibranch-2.19.hpi, workflow-cps-2.53.hpi, ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi</sub>
 
 Gitlab
 
@@ -357,7 +407,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: gitlab-plugin-1.4.8.hpi, credentials-2.1.16.hpi, plain-credentials-1.4.hpi, git-3.7.0.hpi, git-client-2.7.0.hpi, matrix-project-1.12.hpi, workflow-step-api-2.14.hpi, ssh-credentials-1.13.hpi, junit-1.23.hpi, script-security-1.40.hpi, mailer-1.20.hpi, scm-api-2.2.6.hpi, workflow-scm-step-2.6.hpi, structs-1.14.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, workflow-api-2.26.hpi</sub>
+<sub>Tested Plugin Versions: gitlab-plugin-1.4.8.hpi, credentials-2.1.16.hpi, plain-credentials-1.4.hpi, git-3.7.0.hpi, git-client-2.7.0.hpi, matrix-project-1.12.hpi, workflow-step-api-2.14.hpi, ssh-credentials-1.13.hpi, junit-1.23.hpi, script-security-1.44.hpi, mailer-1.20.hpi, scm-api-2.2.6.hpi, workflow-scm-step-2.6.hpi, structs-1.14.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, workflow-api-2.27.hpi</sub>
 
 Gradle
 
@@ -387,7 +437,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: hashicorp-vault-plugin-2.1.0.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.1.0.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi</sub>
+<sub>Tested Plugin Versions: hashicorp-vault-plugin-2.1.0.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.4.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi</sub>
 
 HipChat
 
@@ -405,7 +455,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: hipchat-2.1.1.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, display-url-api-2.2.0.hpi, junit-1.23.hpi, matrix-project-1.12.hpi, plain-credentials-1.4.hpi, token-macro-2.3.hpi, structs-1.14.hpi, script-security-1.40.hpi, ssh-credentials-1.13.hpi, workflow-job-2.16.hpi, workflow-api-2.26.hpi, scm-api-2.2.6.hpi, workflow-support-2.16.hpi</sub>
+<sub>Tested Plugin Versions: hipchat-2.1.1.hpi, workflow-step-api-2.14.hpi, credentials-2.1.16.hpi, display-url-api-2.2.0.hpi, junit-1.23.hpi, matrix-project-1.12.hpi, plain-credentials-1.4.hpi, token-macro-2.3.hpi, structs-1.14.hpi, script-security-1.44.hpi, ssh-credentials-1.13.hpi, workflow-job-2.21.hpi, workflow-api-2.27.hpi, scm-api-2.2.6.hpi, workflow-support-2.17.hpi</sub>
 
 Java
 
@@ -469,7 +519,7 @@ jira {
 }
 ```
 
-<sub>Tested Plugin Versions: jira-2.2.1.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, script-security-1.40.hpi, structs-1.14.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, junit-1.23.hpi, scm-api-2.2.6.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
+<sub>Tested Plugin Versions: jira-2.2.1.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, script-security-1.44.hpi, structs-1.14.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, junit-1.23.hpi, scm-api-2.2.6.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
 
 JobDSL
 
@@ -486,7 +536,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.5.hpi, workflow-cps-2.23.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.1.0.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, workflow-support-2.16.hpi, ace-editor-1.0.1.hpi, script-security-1.40.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, job-dsl-1.64.hpi, credentials-binding-1.16.hpi, credentials-2.1.16.hpi, plain-credentials-1.4.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, git-client-2.7.0.hpi</sub>
+<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.5.hpi, workflow-cps-2.53.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.4.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, workflow-support-2.17.hpi, ace-editor-1.0.1.hpi, script-security-1.44.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, job-dsl-1.64.hpi, credentials-binding-1.16.hpi, credentials-2.1.16.hpi, plain-credentials-1.4.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, git-client-2.7.0.hpi</sub>
 
 Kubernetes
 
@@ -812,7 +862,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.5.hpi, workflow-cps-2.23.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.1.0.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, workflow-support-2.16.hpi, ace-editor-1.0.1.hpi, script-security-1.40.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
+<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.5.hpi, workflow-cps-2.53.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.4.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, workflow-support-2.17.hpi, ace-editor-1.0.1.hpi, script-security-1.44.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
 
 Logstash
 
@@ -827,7 +877,7 @@ logstash {
 }
 ```
 
-<sub>Tested Plugin Versions: logstash-1.3.0.hpi, mask-passwords-2.10.1.hpi, structs-1.14.hpi, junit-1.23.hpi, script-security-1.40.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, scm-api-2.2.6.hpi</sub>
+<sub>Tested Plugin Versions: logstash-1.3.0.hpi, mask-passwords-2.10.1.hpi, structs-1.14.hpi, junit-1.23.hpi, script-security-1.44.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, scm-api-2.2.6.hpi</sub>
 
 MailExt
 
@@ -838,7 +888,7 @@ mail {
 }
 ```
 
-<sub>Tested Plugin Versions: email-ext-2.58.hpi, mailer-1.20.hpi, matrix-project-1.12.hpi, script-security-1.40.hpi, token-macro-2.3.hpi, junit-1.23.hpi, script-security-1.40.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, display-url-api-2.2.0.hpi, workflow-job-2.16.hpi, workflow-support-2.16.hpi</sub>
+<sub>Tested Plugin Versions: email-ext-2.58.hpi, mailer-1.20.hpi, matrix-project-1.12.hpi, script-security-1.44.hpi, token-macro-2.3.hpi, junit-1.23.hpi, script-security-1.44.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, display-url-api-2.2.0.hpi, workflow-job-2.21.hpi, workflow-support-2.17.hpi</sub>
 
 Mail
 
@@ -1067,7 +1117,7 @@ env {
 }
 ```
 
-<sub>Tested Plugin Versions: envinject-1.91.3.hpi, maven-plugin-3.1.2.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, script-security-1.40.hpi, structs-1.14.hpi, workflow-api-2.26.hpi, scm-api-2.2.6.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi</sub>
+<sub>Tested Plugin Versions: envinject-1.91.3.hpi, maven-plugin-3.1.2.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, script-security-1.44.hpi, structs-1.14.hpi, workflow-api-2.27.hpi, scm-api-2.2.6.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi</sub>
 
 Plugins
 
@@ -1152,7 +1202,7 @@ scriptsecurity {
 }
 ```
 
-<sub>Tested Plugin Versions: script-security-1.40.hpi</sub>
+<sub>Tested Plugin Versions: script-security-1.44.hpi</sub>
 
 Shell
 
@@ -1191,7 +1241,7 @@ tools {
 }
 ```
 
-<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-3.1.2.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, script-security-1.40.hpi, structs-1.14.hpi, scm-api-2.2.6.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi</sub>
+<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-3.1.2.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, script-security-1.44.hpi, structs-1.14.hpi, scm-api-2.2.6.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi</sub>
 
 SonarRunner
 
@@ -1207,7 +1257,7 @@ tools {
 }
 ```
 
-<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-3.1.2.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.26.hpi, script-security-1.40.hpi, structs-1.14.hpi, scm-api-2.2.6.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, jsch-0.1.54.1.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi</sub>
+<sub>Tested Plugin Versions: sonar-2.6.1.hpi, maven-plugin-3.1.2.hpi, mailer-1.20.hpi, javadoc-1.1.hpi, junit-1.23.hpi, jquery-1.11.2-0.hpi, display-url-api-2.2.0.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, script-security-1.44.hpi, structs-1.14.hpi, scm-api-2.2.6.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi</sub>
 
 Splunk
 
@@ -1234,7 +1284,7 @@ splunk{
 }
 ```
 
-<sub>Tested Plugin Versions: splunk-devops-1.6.0.hpi, script-security-1.40.hpi</sub>
+<sub>Tested Plugin Versions: splunk-devops-1.6.0.hpi, script-security-1.44.hpi</sub>
 
 Ssh
 

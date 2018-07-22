@@ -1354,6 +1354,33 @@ systemProperties = [
 
 <sub>Tested Plugin Versions: NA</sub>
 
+Users
+
+```groovy
+/**
+
+  Creates users using the local Jenkins user database.  Really only intended
+  to provide quick minimal security for public cloud development environments.
+
+  Remove this config when adding proper authentication support (e.g. LDAP, etc)
+
+  - Currently only supports the 'Logged in users can do anything' strategy.
+  - Self-signup is disabled.
+  - Anonymous read access is disabled.
+
+*/
+
+users {
+    users=[
+     // 'username': 'password'
+        'jimbo': 'userpassword1',
+        'timbo': 'ENC(AAAADIG5XwfoURydvwWm/MRnLy6v20hU3fyCpXx9Wu7BZwErfD94wxz0EmDG)'
+    ]
+}
+```
+
+<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
+
 
 
 Note. This file is generated using docs.gradle

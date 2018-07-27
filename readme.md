@@ -1290,6 +1290,32 @@ roleStrategy {
 
 <sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi, role-strategy-2.3.2.hpi</sub>
 
+Saml
+
+```groovy
+/**
+  SAML Plugin Configuration:
+
+    - currently only supports the attributes seen below
+    - Does not set authorization strategy - do that in a separate security{} block
+*/
+
+saml {
+    idpMetadataUrl = 'https://nexus.microsoftonline-p.com/federationmetadata/saml20/federationmetadata.xml'
+    refreshPeriod  = '15'
+    maximumAuthLifetime = 1209600
+    displayNameAttribute = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+    groupAttribute = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/groups'
+    usernameAttribute = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+    emailAttribute = 'email.attribute'
+    usernameCaseConversion = 'None'
+    dataBindingMethod = 'HTTP-Redirect'
+    logoutUrl = 'https://logout.com'
+}
+```
+
+<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, saml-1.0.7.hpi, icon-shim-2.0.3.hpi, bouncycastle-api-2.16.1.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi</sub>
+
 ScriptSecurity
 
 ```groovy

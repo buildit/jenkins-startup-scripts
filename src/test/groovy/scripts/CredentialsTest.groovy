@@ -38,6 +38,9 @@ class CredentialsTest extends StartupTest {
         assertThat(usernamePasswordCredentials[0].getPassword() as String, equalTo("somes3cret"))
         assertThat(usernamePasswordCredentials[1].getUsername() as String, equalTo("cloud"))
         assertThat(usernamePasswordCredentials[1].getPassword() as String, equalTo("cl0ud"))
+        assertThat(usernamePasswordCredentials[2].getId() as String, equalTo("somewhere-cool"))
+        assertThat(usernamePasswordCredentials[2].getUsername() as String, equalTo("somewhere"))
+        assertThat(usernamePasswordCredentials[2].getPassword() as String, equalTo("somes3cret"))
 
         def basicSSHUserPrivateKey = getCredentialsOfType("BasicSSHUserPrivateKey")
         assertThat(basicSSHUserPrivateKey[0].getUsername() as String, equalTo("ssh"))

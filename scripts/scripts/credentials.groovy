@@ -58,6 +58,6 @@ private user(credentials, key) {
             def constructor = Class.forName("com.microsoftopentechnologies.windowsazurestorage.helper.AzureCredentials").getConstructor(CredentialsScope.class, String.class, String.class, String.class, String.class, String.class)
             return constructor.newInstance(CredentialsScope.GLOBAL, credentials.id, credentials.description, credentials.storageAccountName, credentials.storageKey, credentials.endpointUrl)
         default:
-            return new UsernamePasswordCredentialsImpl(CredentialsScope.GLOBAL, key, credentials.description, credentials.username, credentials.password)
+            return new UsernamePasswordCredentialsImpl(CredentialsScope.GLOBAL, credentials.id ?: key, credentials.description, credentials.username, credentials.password)
     }
 }

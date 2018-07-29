@@ -1333,6 +1333,49 @@ scriptsecurity {
 
 <sub>Tested Plugin Versions: script-security-1.44.hpi</sub>
 
+Security
+
+```groovy
+users {
+    accounts=[
+        'jimbo': 'userpassword1',
+        'timbo': 'ENC(AAAADIG5XwfoURydvwWm/MRnLy6v20hU3fyCpXx9Wu7BZwErfD94wxz0EmDG)'
+    ]
+}
+
+security {
+
+    authStrategy = 'Matrix-based security'
+
+    matrix=[
+        'hudson.model.Hudson.Administer': 'jimbo',
+        'hudson.model.Hudson.Read': 'timbo',
+        'hudson.model.Computer.Build': 'timbo',
+        'hudson.model.Computer.Configure': 'timbo',
+        'hudson.model.Computer.Connect': 'timbo'
+
+        //  Can also do stuff like:
+        // 'hudson.model.Hudson.Administer': 'authenticated',
+        // 'hudson.model.Hudson.Read': 'anonymous'
+    ]
+}
+
+/**
+  Also possible:
+
+  security {
+
+      authStrategy = 'Logged-in users can do anything'
+
+      allowAnonymousRead = true
+
+  }
+
+*/
+```
+
+<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi, matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
+
 Shell
 
 ```groovy
@@ -1491,16 +1534,14 @@ Users
   Creates users using the local Jenkins user database.  Really only intended
   to provide quick minimal security for public cloud development environments.
 
-  Remove this config when adding proper authentication support (e.g. LDAP, etc)
-
-  - Currently only supports the 'Logged in users can do anything' strategy.
-  - Self-signup is disabled.
-  - Anonymous read access is disabled.
-
 */
 
+security {
+    authStrategy = 'Logged-in users can do anything'
+}
+
 users {
-    users=[
+    accounts=[
      // 'username': 'password'
         'jimbo': 'userpassword1',
         'timbo': 'ENC(AAAADIG5XwfoURydvwWm/MRnLy6v20hU3fyCpXx9Wu7BZwErfD94wxz0EmDG)'
@@ -1508,7 +1549,7 @@ users {
 }
 ```
 
-<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
+<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi, matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
 
 
 

@@ -1,6 +1,5 @@
 package scripts
 
-import hudson.security.FullControlOnceLoggedInAuthorizationStrategy
 import hudson.security.HudsonPrivateSecurityRealm
 import org.junit.BeforeClass
 import org.junit.Test
@@ -8,33 +7,41 @@ import org.jvnet.hudson.test.recipes.LocalData
 import org.jvnet.hudson.test.recipes.WithPlugin
 import utilities.ZipTestFiles
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*
 
 class UsersTest extends StartupTest {
 
     @BeforeClass
     public static void setUp() {
         setUp(UsersTest.class, ["scripts/users.groovy"])
+        System.metaClass.static.getenv = { String key ->
+            return [TEST_CONFIG_FILE: "jenkins.config,nosecurityblock.config"].get(key)
+        }
     }
 
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
     @WithPlugin(["matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
-    void shouldCreateUsers() {
+    void should_create_users() {
 
         def securityRealm = jenkinsRule.instance.getSecurityRealm()
-        def authStrategy = this.jenkinsRule.getInstance().getAuthorizationStrategy()
 
         assertThat(securityRealm).isExactlyInstanceOf(HudsonPrivateSecurityRealm.class)
         assertThat(securityRealm.allowsSignup()).isFalse()
 
-        assertThat(authStrategy).isExactlyInstanceOf(FullControlOnceLoggedInAuthorizationStrategy.class)
-        assertThat(authStrategy.isAllowAnonymousRead()).isFalse()
-
         def users = securityRealm.getAllUsers()
         assertThat(users).extracting("id").containsExactly("jimbo", "timbo")
+    }
 
-        //Thread.sleep(1000 * 60 * 5)
+    @Test
+    @LocalData
+    @ZipTestFiles(files = ["nosecurityblock.config"])
+    @WithPlugin(["matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
+    void missing_security_block() {
+        def securityRealm = jenkinsRule.instance.getSecurityRealm()
+
+        // can't assert for exception, so just assert that nothing was configured
+        assertThat(securityRealm.getClass().getName()).isEqualTo('hudson.security.SecurityRealm$None')
     }
 }

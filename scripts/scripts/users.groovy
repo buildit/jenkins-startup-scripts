@@ -1,39 +1,22 @@
-import hudson.security.FullControlOnceLoggedInAuthorizationStrategy
 import hudson.security.HudsonPrivateSecurityRealm
 import jenkins.model.Jenkins
 
+// need to start at the root of the config so we can check for security config as well
+if (config.users.accounts) {
 
-def users
-
-// Leave open to adding other types of users
-config.each { type, userMap ->
-    if (type == 'users') {
-        println "Found users"
-        users = userMap
+    if (!config.security) {
+        throw new RuntimeException("You MUST have a security block configured if you are configuring users.")
     }
-    else {
-        println "User type ${type} not recognised, ignoring config..."
-    }
-}
-
-if (users) {
-
-    println "creating private security realm..."
 
     def instance = Jenkins.getInstance()
     def realm = new HudsonPrivateSecurityRealm(false, false, null)
-    def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
-
-    strategy.setAllowAnonymousRead(false)
     instance.setSecurityRealm(realm)
-    instance.setAuthorizationStrategy(strategy)
 
-    users.each {username, password ->
+    config.users.accounts.each {username, password ->
         realm.createAccount(username, password)
     }
 
     instance.save()
 }
-else {
-    println "No users configured"
-}
+
+

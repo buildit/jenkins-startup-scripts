@@ -23,9 +23,9 @@ config?.each { instance ->
             instance.serverUrl as String, 
             instance.serverAuthenticationToken as String,
             null,
-            "-XX", 
+            instance.additionalCommandLineArguments, 
             new TriggersConfig(),
-            "sonar.organization=bleugh"
+            instance.additionalAnalysisProperties
         )
 
     installations.add(installation)

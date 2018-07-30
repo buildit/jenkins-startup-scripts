@@ -24,7 +24,7 @@ class JobDSLTest extends StartupTest {
     @Test(timeout = 30000L)
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
-    @WithPlugin(["ace-editor-1.0.1.hpi", "jquery-detached-1.2.1.hpi", "workflow-cps-global-lib-2.5.hpi", "workflow-cps-2.53.hpi",
+    @WithPlugin(["ace-editor-1.0.1.hpi", "jquery-detached-1.2.1.hpi", "workflow-cps-global-lib-2.9.hpi", "workflow-cps-2.53.hpi",
             "workflow-scm-step-2.6.hpi", "cloudbees-folder-6.4.hpi", "git-client-2.7.0.hpi", "git-server-1.7.hpi", "scm-api-2.2.6.hpi",
             "structs-1.14.hpi", "ssh-credentials-1.13.hpi", "credentials-2.1.16.hpi", "workflow-step-api-2.14.hpi",
             "workflow-api-2.27.hpi", "workflow-support-2.17.hpi", "ace-editor-1.0.1.hpi", "script-security-1.44.hpi",

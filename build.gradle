@@ -123,7 +123,7 @@ dependencies {
                     ":workflow-api:2.27@hpi",
                     ":workflow-basic-steps:2.5@hpi",
                     ":workflow-cps:2.53@hpi",
-                    ":workflow-cps-global-lib:2.5@hpi",
+                    ":workflow-cps-global-lib:2.9@hpi",
                     ":workflow-job:2.21@hpi",
                     ":workflow-multibranch:2.19@hpi",
                     ":workflow-scm-step:2.6@hpi",

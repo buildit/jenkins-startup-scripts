@@ -1,26 +1,31 @@
-import hudson.plugins.git.BranchSpec
-import hudson.plugins.git.GitSCM
-import hudson.plugins.git.SubmoduleConfig
-import hudson.plugins.git.extensions.GitSCMExtension
-import hudson.scm.SCM
+import jenkins.plugins.git.GitSCMSource
+import org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever
 import org.jenkinsci.plugins.workflow.libs.LibraryConfiguration
-import org.jenkinsci.plugins.workflow.libs.SCMRetriever
 
 def globalLibsDesc = instance.getDescriptor("org.jenkinsci.plugins.workflow.libs.GlobalLibraries")
 
 def results = []
 config?.each { library ->
-    def branch = library.value.scm.branch == null ? '*/master' : library.value.scm.branch
-    SCM scm = new GitSCM(GitSCM.createRepoList(library.value.scm.url, library.value.scm.credentialsId),
-            Collections.singletonList(new BranchSpec(branch)),
-            false, Collections.<SubmoduleConfig> emptyList(),
-            null, null, Collections.<GitSCMExtension> emptyList())
-
-    SCMRetriever retriever = new SCMRetriever(scm)
-    LibraryConfiguration pipeline = new LibraryConfiguration(library.key, retriever)
+    def branch = library.value.scm.branch == null ? '*' : library.value.scm.branch
+    
+    LibraryConfiguration pipeline =
+        new LibraryConfiguration(library.key,
+            new SCMSourceRetriever(
+                new GitSCMSource(
+                    null,
+                    remote = library.value.scm.url,
+                    credentialsId = library.value.scm.credentialsId,
+                    includes = branch,
+                    excludes = "",
+                    ignoreOnPushNotifications = true
+                )
+            )
+        )
     pipeline.setDefaultVersion(library.value.defaultVersion)
     pipeline.setImplicit(library.value.implicit)
     pipeline.setAllowVersionOverride(library.value.allowVersionOverride)
+    pipeline.setIncludeInChangesets(false)
+
     results.add(pipeline)
 }
 globalLibsDesc.get().setLibraries(results)

@@ -111,7 +111,7 @@ dependencies {
                     ":sauce-ondemand:1.164@hpi",
                     ":scm-api:2.2.6@hpi",
                     ":script-security:1.44@hpi",
-                    ":sonar:2.6.1@hpi",
+                    ":sonar:2.8@hpi",
                     ":splunk-devops:1.6.0@hpi",
                     ":ssh-credentials:1.13@hpi",
                     ":ssh-slaves:1.26@hpi",

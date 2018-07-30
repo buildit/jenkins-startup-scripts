@@ -639,7 +639,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.5.hpi, workflow-cps-2.53.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.4.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, workflow-support-2.17.hpi, ace-editor-1.0.1.hpi, script-security-1.44.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, job-dsl-1.64.hpi, credentials-binding-1.16.hpi, credentials-2.1.16.hpi, plain-credentials-1.4.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, git-client-2.7.0.hpi</sub>
+<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.9.hpi, workflow-cps-2.53.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.4.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, workflow-support-2.17.hpi, ace-editor-1.0.1.hpi, script-security-1.44.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, job-dsl-1.64.hpi, credentials-binding-1.16.hpi, credentials-2.1.16.hpi, plain-credentials-1.4.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, git-client-2.7.0.hpi</sub>
 
 Kubernetes
 
@@ -965,7 +965,7 @@ credentials {
 }
 ```
 
-<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.5.hpi, workflow-cps-2.53.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.4.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, workflow-support-2.17.hpi, ace-editor-1.0.1.hpi, script-security-1.44.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
+<sub>Tested Plugin Versions: ace-editor-1.0.1.hpi, jquery-detached-1.2.1.hpi, workflow-cps-global-lib-2.9.hpi, workflow-cps-2.53.hpi, workflow-scm-step-2.6.hpi, cloudbees-folder-6.4.hpi, git-client-2.7.0.hpi, git-server-1.7.hpi, scm-api-2.2.6.hpi, structs-1.14.hpi, ssh-credentials-1.13.hpi, credentials-2.1.16.hpi, workflow-step-api-2.14.hpi, workflow-api-2.27.hpi, workflow-support-2.17.hpi, ace-editor-1.0.1.hpi, script-security-1.44.hpi, git-3.7.0.hpi, matrix-project-1.12.hpi, mailer-1.20.hpi, junit-1.23.hpi, apache-httpcomponents-client-4-api-4.5.3-2.1.hpi, jsch-0.1.54.1.hpi, display-url-api-2.2.0.hpi, mailer-1.20.hpi</sub>
 
 Logstash
 

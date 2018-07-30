@@ -24,7 +24,7 @@ class MailExtTest extends StartupTest {
     @WithPlugin(["email-ext-2.58.hpi", "mailer-1.20.hpi", "matrix-project-1.12.hpi", "script-security-1.44.hpi",
             "token-macro-2.3.hpi", "junit-1.23.hpi", "script-security-1.44.hpi", "workflow-step-api-2.14.hpi",
             "workflow-api-2.27.hpi", "scm-api-2.2.6.hpi", "structs-1.14.hpi", "display-url-api-2.2.0.hpi", "workflow-job-2.21.hpi",
-            "workflow-support-2.17.hpi"])
+            "workflow-support-2.18.hpi"])
     void shouldConfigureMailFromConfig() {
         def settings = Jenkins.instance.getDescriptor("hudson.plugins.emailext.ExtendedEmailPublisher")
         assertNotNull(settings)

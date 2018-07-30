@@ -23,17 +23,11 @@ config?.each { instance ->
     def installation = new SonarInstallation(
             instance.name as String,
             instance.serverUrl as String, 
-            SQ_5_3_OR_HIGHER, 
             instance.serverAuthenticationToken as String,
-            instance.databaseUrl as String, 
-            instance.databaseLogin as String, 
-            instance.databasePassword as String,
-            "", 
-            "", 
+            SQ_5_3_OR_HIGHER, 
+            "-XX", 
             new TriggersConfig(),
-            instance.sonarLogin as String, 
-            instance.sonarPassword as String, 
-            ""
+            "sonar.organization=bleugh"
         )
 
     installations.add(installation)

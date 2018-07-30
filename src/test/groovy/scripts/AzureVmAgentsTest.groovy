@@ -50,11 +50,10 @@ class AzureVmAgentsTest extends StartupTest {
         // returns random string
         //assertThat(template.newStorageAccountName).isEqualTo("new-storage-account")
 
-        assertThat(template.diskType).isEqualTo("Managed Disk")
+        assertThat(template.diskType).isEqualTo("managed")
         assertThat(template.shutdownOnIdle).isEqualTo(false)
         assertThat(template.usageMode).isEqualTo("Use this node as much as possible")
         assertThat(template.credentialsId).isEqualTo("my-admin-credential-id")
-        assertThat(template.diskType).isEqualTo("Managed Disk")
 
         //  'built-in' cloud image assertions
 
@@ -86,11 +85,10 @@ class AzureVmAgentsTest extends StartupTest {
         assertThat(advancedTemplate.virtualMachineSize).isEqualTo("Standard_D4s_v3")
         assertThat(advancedTemplate.storageAccountType).isEqualTo("Standard_LRS")
         assertThat(advancedTemplate.existingStorageAccountName).isEqualTo("existing-storage-account")
-        assertThat(advancedTemplate.diskType).isEqualTo("Managed Disk")
+        assertThat(advancedTemplate.diskType).isEqualTo("managed")
         assertThat(advancedTemplate.shutdownOnIdle).isEqualTo(true)
         assertThat(advancedTemplate.usageMode).isEqualTo("Only build jobs with label expressions matching this node")
         assertThat(advancedTemplate.credentialsId).isEqualTo("my-admin-credential-id")
-        assertThat(advancedTemplate.diskType).isEqualTo("Managed Disk")
 
         //  advanced image assertions
 

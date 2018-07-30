@@ -128,7 +128,7 @@ dependencies {
                     ":workflow-multibranch:2.19@hpi",
                     ":workflow-scm-step:2.6@hpi",
                     ":workflow-step-api:2.14@hpi",
-                    ":workflow-support:2.17@hpi"
+                    ":workflow-support:2.18@hpi"
 }
 
 publishing {

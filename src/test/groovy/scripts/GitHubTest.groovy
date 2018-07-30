@@ -25,7 +25,7 @@ class GitHubTest extends StartupTest {
             "ssh-credentials-1.13.hpi", "apache-httpcomponents-client-4-api-4.5.3-2.1.hpi", "jsch-0.1.54.1.hpi",
             "junit-1.23.hpi", "script-security-1.44.hpi", "workflow-api-2.27.hpi", "workflow-step-api-2.14.hpi",
             "workflow-scm-step-2.6.hpi", "jackson2-api-2.8.10.1.hpi", "plain-credentials-1.4.hpi",
-            "token-macro-2.3.hpi", "workflow-job-2.21.hpi", "workflow-support-2.17.hpi", "branch-api-2.0.19.hpi",
+            "token-macro-2.3.hpi", "workflow-job-2.21.hpi", "workflow-support-2.18.hpi", "branch-api-2.0.19.hpi",
             "cloudbees-folder-6.4.hpi", "workflow-multibranch-2.19.hpi",
             "workflow-cps-2.53.hpi", "ace-editor-1.0.1.hpi", "jquery-detached-1.2.1.hpi"
     ])

@@ -20,7 +20,7 @@ class ConfigFilesTest extends StartupTest {
     @Test
     @LocalData
     @WithPlugin(["config-file-provider-2.15.7.hpi", "credentials-2.1.16.hpi", "ssh-credentials-1.13.hpi", "structs-1.14.hpi", "token-macro-2.3.hpi",
-    "workflow-job-2.21.hpi", "workflow-step-api-2.14.hpi", "workflow-api-2.27.hpi", "workflow-support-2.17.hpi", "scm-api-2.2.6.hpi", "script-security-1.44.hpi"])
+    "workflow-job-2.21.hpi", "workflow-step-api-2.14.hpi", "workflow-api-2.27.hpi", "workflow-support-2.18.hpi", "scm-api-2.2.6.hpi", "script-security-1.44.hpi"])
     @ZipTestFiles(files = ["jenkins.config"])
     void shouldConfigureGlobalMavenSettingsFromConfig() {
         def provider = Jenkins.instance.getExtensionList('org.jenkinsci.plugins.configfiles.GlobalConfigFiles')[0]

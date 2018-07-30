@@ -26,7 +26,7 @@ class GitHubTest extends StartupTest {
             "junit-1.23.hpi", "script-security-1.44.hpi", "workflow-api-2.27.hpi", "workflow-step-api-2.14.hpi",
             "workflow-scm-step-2.6.hpi", "jackson2-api-2.8.10.1.hpi", "plain-credentials-1.4.hpi",
             "token-macro-2.3.hpi", "workflow-job-2.21.hpi", "workflow-support-2.17.hpi", "branch-api-2.0.19.hpi",
-            "cloudbees-folder-6.4.hpi", "workflow-multibranch-2.19.hpi", "workflow-multibranch-2.19.hpi",
+            "cloudbees-folder-6.4.hpi", "workflow-multibranch-2.19.hpi",
             "workflow-cps-2.53.hpi", "ace-editor-1.0.1.hpi", "jquery-detached-1.2.1.hpi"
     ])
     @ZipTestFiles(files = ["jenkins.config"])
@@ -87,6 +87,16 @@ class GitHubTest extends StartupTest {
 
         def acmeProjectFactory0 = acmeProjectFactories[0]
         assertThat(acmeProjectFactory0.scriptPath, equalTo('Jenkinsfile.acme'))
+
+        def buildItSpecificBranchOrg = jenkinsRule.jenkins.getItem("buildit-specific-branches")
+        def noTriggerProperty = buildItSpecificBranchOrg.getProperties()
+                .get(0)
+        assertThat(noTriggerProperty.branches, equalTo(' '))
+        def traits = buildItSpecificBranchOrg.navigators.get(0).traits
+        assertThat(traits.size(), equalTo(5))
+        def wildcardSCMHeadFilterTrait = traits.get(4)
+        assertThat(wildcardSCMHeadFilterTrait.includes, equalTo('master'))
+        assertThat(wildcardSCMHeadFilterTrait.excludes, equalTo(''))
     }
 
 }

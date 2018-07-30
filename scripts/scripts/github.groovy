@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 import jenkins.branch.OrganizationFolder
+import jenkins.branch.NoTriggerOrganizationFolderProperty
 import jenkins.model.GlobalConfiguration
 import org.jenkinsci.plugins.github_branch_source.*
 import static jenkins.model.Jenkins.instance as jenkins
@@ -31,17 +32,27 @@ void createOrganisationFolder(organisation) {
     folder.displayName = organisation.displayName
     folder.description = organisation.description
 
+    if (organisation.branchesToBuildAutomatically) {
+        folder.getProperties().replace(new NoTriggerOrganizationFolderProperty(organisation.branchesToBuildAutomatically))
+    }
+
     GitHubSCMNavigator navigator = new GitHubSCMNavigator(organisation.project.owner)
 
     navigator.credentialsId = organisation.project.credentialsId
 
     navigator.apiUri = lookupApiUri(organisation.project.apiEndpoint)
-    navigator.traits = [
+    def traits = [
             new jenkins.scm.impl.trait.WildcardSCMSourceFilterTrait(organisation.project.repositoryNamePattern, ''),
             new jenkins.scm.impl.trait.RegexSCMHeadFilterTrait('.*'),
             new BranchDiscoveryTrait(3),
             new OriginPullRequestDiscoveryTrait(3),
     ]
+
+    if (organisation.project.branchesToInclude) {
+       traits << new jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait(organisation.project.branchesToInclude, "")
+    }
+
+    navigator.traits = traits
 
     if (organisation.containsKey('jenkinsfiles')) {
         // clear out defaults

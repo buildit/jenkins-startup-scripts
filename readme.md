@@ -8,7 +8,7 @@ A collection of groovy scripts that can be used to simplify the configuration of
 
 ## Using the Scripts
 
-Though it is possible to run them without it, these scripts have been wrtten to work in conjunction with the [Jenkins Startup Scripts Runner](https://github.com/buildit/jenkins-startup-scripts-runner) project. Please see that project for details on how to configure and invoke these scripts.
+Though it is possible to run them without it, these scripts have been wrtten to work in conjunction with the [Jenkins Startup Scripts Runner](https://github.com/buildit/jenkins-startup-scripts-runner) project. Please see that project for details on how to confgure and invoke these scripts.
 
 ## Adding Scripts
 
@@ -1398,6 +1398,29 @@ tools {
 ```
 
 <sub>Tested Plugin Versions: NA</sub>
+
+Slack
+
+```groovy
+credentials {
+    authToken=['type': 'StringCredential', 'token': 'ENC(AAAADBCsrisG4HKN89K4oEKwHbHlA2wKZqR1n275eeadIXrVUTctvseX/jb9V6qv2w==)', 'description': 'Slack token']
+}
+
+/**
+  Other options that can be used:
+  baseUrl,
+  botUser - string, 'true' or 'false'
+  buildServerUrl,
+  room,
+  sendAs
+*/
+slack {
+  teamDomain = 'buildit'
+  tokenCredentialId = 'authToken'
+}
+```
+
+<sub>Tested Plugin Versions: credentials-2.1.16.hpi, display-url-api-2.2.0.hpi, junit-1.23.hpi, plain-credentials-1.4.hpi, scm-api-2.2.6.hpi, script-security-1.44.hpi, slack-2.3.hpi, structs-1.14.hpi, workflow-api-2.27.hpi, workflow-step-api-2.14.hpi</sub>
 
 SonarQube
 

@@ -86,7 +86,7 @@ dependencies {
                     ":javadoc:1.1@hpi",
                     ":jdk-tool:1.1@hpi",
                     ":jira:2.2.1@hpi",
-                    ":job-dsl:1.64@hpi",
+                    ":job-dsl:1.70@hpi",
                     ":jquery:1.11.2-0@hpi",
                     ":jquery-detached:1.2.1@hpi",
                     ":jsch:0.1.54.1@hpi",
@@ -196,8 +196,8 @@ dependencies {
 
     testCompile 'com.buildit:encryptor:2.1.0'
 
-    testCompile 'org.jenkins-ci.main:jenkins-test-harness:2.38'
-    testCompile "org.jenkins-ci.main:jenkins-war:2.125"
+    testCompile 'org.jenkins-ci.main:jenkins-test-harness:2.40'
+    testCompile "org.jenkins-ci.main:jenkins-war:2.135"
 
     testCompile "org.zeroturnaround:zt-zip:1.9"
     testCompile 'org.eclipse.jetty:jetty-server:9.2.3.v20140905'

@@ -28,8 +28,7 @@ config.each { jobName, values ->
             println("Creating job with name ${jobName}")
             project = Jenkins.getInstance().createProjectFromXML(jobName, stream)
         }
-        def causeAction = new hudson.model.CauseAction(new TimerTrigger.TimerTriggerCause())
-        instance.getQueue().schedule(project, 10, causeAction)
+        instance.getQueue().schedule(project)
     }
 }
 

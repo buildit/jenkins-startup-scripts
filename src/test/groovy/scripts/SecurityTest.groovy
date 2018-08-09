@@ -29,18 +29,16 @@ class SecurityTest extends StartupTest {
         def authStrategy = this.jenkinsRule.getInstance().getAuthorizationStrategy()
 
         def users = securityRealm.getAllUsers()
-        assertThat(users).extracting("id").containsExactly('jimbo', 'timbo')
+        assertThat(users).extracting("id").containsExactlyInAnyOrder('jimbo', 'timbo', 'bob', 'doug')
 
         assertThat(securityRealm).isExactlyInstanceOf(HudsonPrivateSecurityRealm.class)
         assertThat(securityRealm.allowsSignup()).isFalse()
 
         assertThat(authStrategy.getClass().getName()).isEqualTo('hudson.security.GlobalMatrixAuthorizationStrategy')
 
-        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Hudson.Administer')))).containsExactly('jimbo')
-        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Hudson.Read')))).containsExactly('timbo')
-        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Computer.Build')))).containsExactly('timbo')
-        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Computer.Configure')))).containsExactly('timbo')
-        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Computer.Connect')))).containsExactly('timbo')
+        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Hudson.Administer')))).containsExactlyInAnyOrder('jimbo', 'timbo', '840491fe-167d-4eaa-b137-9877712a9b3f')
+        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Hudson.Read')))).containsExactly('9a966d41-b9bb-4951-909f-2ea5f3f43310', 'ef369fdf-6307-4e43-a4aa-28233fde0071')
+        assertThat(authStrategy.grantedPermissions.get((Permission.fromId('hudson.model.Computer.Build')))).containsExactlyInAnyOrder('bob', 'doug', 'ef369fdf-6307-4e43-a4aa-28233fde0071')
     }
 
 
@@ -58,6 +56,6 @@ class SecurityTest extends StartupTest {
 
         assertThat(authStrategy).isExactlyInstanceOf(FullControlOnceLoggedInAuthorizationStrategy.class)
         assertThat(authStrategy.isAllowAnonymousRead()).isTrue()
-    }
 
+    }
 }

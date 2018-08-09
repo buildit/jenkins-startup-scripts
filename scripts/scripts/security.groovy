@@ -22,8 +22,10 @@ switch (authStrategy) {
 
 def setMatrixStrategy(instance, matrix) {
     def strategy = new GlobalMatrixAuthorizationStrategy()
-    matrix.each { role, entity ->
-        strategy.add(Permission.fromId(role), entity)
+    matrix.each { role, entityList ->
+        entityList.each { entity ->
+            strategy.add(Permission.fromId(role), entity)
+        }
     }
     instance.setAuthorizationStrategy(strategy)
     instance.save()

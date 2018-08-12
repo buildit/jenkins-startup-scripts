@@ -17,6 +17,7 @@ config.each { jobName, values ->
         bindings << values
         bindings.credentialsBlock = bindings.credentialsId ? "<credentialsId>${bindings.credentialsId}</credentialsId>" : ''
         bindings.labelBlock = bindings.label ? "<assignedNode>${bindings.label}</assignedNode>" : ''
+        bindings.roamBlock = bindings.label ? "<canRoam>false</canRoam>" : "<canRoam>true</canRoam>"
         def xml = getXmlFromTemplate(bindings)
         def stream = new ByteArrayInputStream(xml.bytes)
         def project = Jenkins.getInstance().getItem(jobName)
@@ -61,7 +62,7 @@ String getXmlFromTemplate(bindings) {
             <extensions/>
         </scm>
         ${labelBlock}
-        <canRoam>true</canRoam>
+        ${roamBlock}
         <disabled>false</disabled>
         <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
         <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>

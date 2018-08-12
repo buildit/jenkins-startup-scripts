@@ -25,6 +25,16 @@ class NodesTest extends StartupTest {
     @ZipTestFiles(files = ["jenkins.config"])
     @WithPlugin(["ssh-slaves-1.26.hpi", "credentials-2.1.16.hpi", "structs-1.14.hpi", "ssh-credentials-1.13.hpi","jdk-tool-1.1.hpi"])
     void shouldConfigureNodesFromConfig() {
+
+        def instance = jenkinsRule.getInstance()
+        assertThat(instance.labelString, equalTo("label1 label2"))
+
+        def expected = 3
+        assertThat(instance.numExecutors, equalTo(expected))
+
+        def expectedMode = Node.Mode.EXCLUSIVE
+        assertThat(instance.mode, equalTo(expectedMode))
+
         def node01 = jenkinsRule.jenkins.getNode("node 01") as Slave
         assertThat(node01.getNodeDescription(), equalTo("First node"))
         assertThat(node01.getRemoteFS(), equalTo("/tmp"))

@@ -4,6 +4,7 @@ import hudson.model.FreeStyleProject
 import jenkins.model.GlobalConfiguration
 import org.eclipse.jetty.server.Server
 import org.junit.AfterClass
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.ClassRule
 import org.junit.Rule
@@ -35,6 +36,11 @@ class JobDSLTest extends StartupTest {
         File file = folder.newFolder()
         GitRepository.initialiseGitRepository(file.absolutePath)
         server = HttpServer.startServer(file, 6666)
+    }
+
+    @Before
+    void init() {
+        jenkinsRule.instance.setLabelString("foo")
     }
 
     @Test(timeout = 100000L)

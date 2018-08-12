@@ -5,7 +5,24 @@ import hudson.slaves.EnvironmentVariablesNodeProperty.Entry
 
 removeAllNodes(instance)
 
-config?.each { key, node ->
+if (config?.master) {
+    if (config.master.labels) {
+        println "Adding labels ${config.master.labels} to master."
+        instance.setLabelString(config.master.labels.join(" "))
+    }
+
+    if (config.master.executors) {
+        println "Adding executors ${config.master.executors} to master."
+        instance.setNumExecutors(config.master.executors)
+    }
+
+    if (config.master.mode) {
+        println "Adding mode ${config.master.mode} to master."
+        instance.setMode(mode(config.master.mode))
+    }
+}
+
+config?.slaves?.each { key, node ->
     println("Adding node ${key}")
 
     def env = node?.env?.collect { k, v -> new Entry(k, v) }

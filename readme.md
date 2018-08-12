@@ -262,16 +262,6 @@ env {
 
 <sub>Tested Plugin Versions: NA</sub>
 
-Executors
-
-```groovy
-executors {
-	active = 3
-}
-```
-
-<sub>Tested Plugin Versions: NA</sub>
-
 Files
 
 ```groovy
@@ -1017,18 +1007,6 @@ mail {
 
 <sub>Tested Plugin Versions: mailer-1.20.hpi, display-url-api-2.2.0.hpi</sub>
 
-Master
-
-```groovy
-nodes {
-    master {
-        labels = ['label1', 'label2']
-    }
-}
-```
-
-<sub>Tested Plugin Versions: NA</sub>
-
 Maven
 
 ```groovy
@@ -1212,6 +1190,11 @@ Nodes
 
 ```groovy
 nodes {
+    master {
+        labels = ['label1', 'label2']
+        executors = 3
+        mode = 'EXCLUSIVE'
+    }
     slaves {
         node01 = ['name': 'node 01', 'description': 'First node', remoteFS: '/tmp', numExecutors: '1', launchType: 'JNLP', jnlpTunnel: ':443', jnlpVmArgs: '-', env: ['android_home': '/android', 'java_home': '/java']]
         node02 = ['name': 'node 02', 'description': 'Second node', remoteFS: '/var', mode: 'EXCLUSIVE']

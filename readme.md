@@ -795,7 +795,7 @@ auth {
 }
 ```
 
-<sub>Tested Plugin Versions: ldap-1.15.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi, matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
+<sub>Tested Plugin Versions: ldap-1.15.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi, matrix-auth-2.3.hpi, icon-shim-2.0.3.hpi</sub>
 
 LdapAuthZ
 
@@ -929,7 +929,7 @@ auth {
  **/
 ```
 
-<sub>Tested Plugin Versions: ldap-1.15.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi, icon-shim-2.0.3.hpi, matrix-auth-1.4.hpi</sub>
+<sub>Tested Plugin Versions: ldap-1.15.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi, icon-shim-2.0.3.hpi, matrix-auth-2.3.hpi</sub>
 
 Libraries
 
@@ -1285,7 +1285,7 @@ roleStrategy {
 }
 ```
 
-<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi, role-strategy-2.3.2.hpi</sub>
+<sub>Tested Plugin Versions: matrix-auth-2.3.hpi, icon-shim-2.0.3.hpi, role-strategy-2.3.2.hpi</sub>
 
 Saml
 
@@ -1383,7 +1383,7 @@ urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
 }
 ```
 
-<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, saml-1.0.7.hpi, icon-shim-2.0.3.hpi, bouncycastle-api-2.16.1.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi</sub>
+<sub>Tested Plugin Versions: matrix-auth-2.3.hpi, saml-1.0.7.hpi, icon-shim-2.0.3.hpi, bouncycastle-api-2.16.1.hpi, mailer-1.20.hpi, display-url-api-2.2.0.hpi</sub>
 
 ScriptSecurity
 
@@ -1447,7 +1447,7 @@ security {
 */
 ```
 
-<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi, matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
+<sub>Tested Plugin Versions: matrix-auth-2.3.hpi, icon-shim-2.0.3.hpi, matrix-auth-2.3.hpi, icon-shim-2.0.3.hpi</sub>
 
 Shell
 
@@ -1642,7 +1642,7 @@ users {
 }
 ```
 
-<sub>Tested Plugin Versions: matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi, matrix-auth-1.4.hpi, icon-shim-2.0.3.hpi</sub>
+<sub>Tested Plugin Versions: matrix-auth-2.3.hpi, icon-shim-2.0.3.hpi, matrix-auth-2.3.hpi, icon-shim-2.0.3.hpi</sub>
 
 
 

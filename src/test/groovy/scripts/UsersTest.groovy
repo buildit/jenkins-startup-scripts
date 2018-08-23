@@ -22,7 +22,7 @@ class UsersTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
-    @WithPlugin(["matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
+    @WithPlugin(["matrix-auth-2.3.hpi", "icon-shim-2.0.3.hpi"])
     void should_create_users() {
 
         def securityRealm = jenkinsRule.instance.getSecurityRealm()
@@ -37,7 +37,7 @@ class UsersTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["nosecurityblock.config"])
-    @WithPlugin(["matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
+    @WithPlugin(["matrix-auth-2.3.hpi", "icon-shim-2.0.3.hpi"])
     void missing_security_block() {
         def securityRealm = jenkinsRule.instance.getSecurityRealm()
 

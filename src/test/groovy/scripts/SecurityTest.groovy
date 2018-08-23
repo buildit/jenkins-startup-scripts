@@ -22,7 +22,7 @@ class SecurityTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
-    @WithPlugin(["matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
+    @WithPlugin(["matrix-auth-2.3.hpi", "icon-shim-2.0.3.hpi"])
     void matrix_auth() {
 
         def securityRealm = jenkinsRule.instance.getSecurityRealm()
@@ -45,7 +45,7 @@ class SecurityTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["loggedinusers.config"])
-    @WithPlugin(["matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
+    @WithPlugin(["matrix-auth-2.3.hpi", "icon-shim-2.0.3.hpi"])
     void logged_in_users_can_do_anything() {
 
         def securityRealm = jenkinsRule.instance.getSecurityRealm()

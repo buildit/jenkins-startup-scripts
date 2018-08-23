@@ -19,7 +19,7 @@ class LdapAuthNTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
-    @WithPlugin(["ldap-1.15.hpi", "mailer-1.20.hpi", "display-url-api-2.2.0.hpi", "matrix-auth-1.4.hpi", "icon-shim-2.0.3.hpi"])
+    @WithPlugin(["ldap-1.15.hpi", "mailer-1.20.hpi", "display-url-api-2.2.0.hpi", "matrix-auth-2.3.hpi", "icon-shim-2.0.3.hpi"])
     void shouldSetPermissions() {
         def securityRealm = jenkinsRule.instance.getSecurityRealm()
         println(securityRealm)

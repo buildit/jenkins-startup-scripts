@@ -18,7 +18,7 @@ class SamlTest extends StartupTest {
     @Test
     @LocalData
     @ZipTestFiles(files = ["jenkins.config"])
-    @WithPlugin(["matrix-auth-1.4.hpi", "saml-1.0.7.hpi", "icon-shim-2.0.3.hpi",
+    @WithPlugin(["matrix-auth-2.3.hpi", "saml-1.0.7.hpi", "icon-shim-2.0.3.hpi",
                  "bouncycastle-api-2.16.1.hpi", "mailer-1.20.hpi", "display-url-api-2.2.0.hpi"])
     void shouldConfigureSaml() {
 

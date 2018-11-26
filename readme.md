@@ -68,6 +68,24 @@ anchore {
 
 <sub>Tested Plugin Versions: anchore-container-scanner-1.0.12.hpi, structs-1.14.hpi</sub>
 
+AquaSec
+
+```groovy
+aquasec {
+    version = '3.x'
+    aquaScannerImage = 'aquasec/scanner-cli:3.2'
+    apiUrl = 'https://aquasec-server-url.com'
+    user = 'scanner'
+    password = 'scanner123'
+    //in seconds
+    timeout =  0
+    runOptions = 'test'
+    caCertificates= false
+}
+```
+
+<sub>Tested Plugin Versions: aqua-security-scanner-3.0.12.hpi, structs-1.14.hpi, jdk-tool-1.1.hpi</sub>
+
 AzureVmAgents
 
 ```groovy

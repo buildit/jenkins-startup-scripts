@@ -29,6 +29,7 @@ dependencies {
                     ":anchore-container-scanner:1.0.12@hpi",
                     ":apache-httpcomponents-client-4-api:4.5.3-2.1@hpi",
                     ":antisamy-markup-formatter:1.5@hpi",
+                    ":aqua-security-scanner:3.0.12@hpi",
                     ":azure-credentials:1.6.0@hpi",
                     ":azure-commons:0.2.6@hpi",
                     ":azure-vm-agents:0.7.1@hpi",
